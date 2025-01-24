@@ -3,14 +3,15 @@ import RecursiveAsyncDemo from './RecursiveAsyncDemo';
 import UseAsyncDemo from './UseAsyncDemo';
 import Title from "./Title";
 
-<div className='w-full text-center text-5xl mt-6'>⚛️⏳</div>
+<div className='w-full text-center text-5xl mt-10'>⚛️⏳</div>
 
 # <Title/>
 
 - `Demo:` [shao.fun/react-client-async](https://shao.fun/react-client-async/)
 - `Repo:` [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
 
-Previously, `async component` were only supported on the server (Next.js). With this package, you can now easily use it on the client side as well.
+Previously, `async component` were only supported on the server (Next.js). 
+With this package, you can now easily use it on the client side as well.
 
 
 <div className='bg-gray-100 rounded-lg [&>h2]:mt-0 p-8'>
@@ -73,10 +74,12 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 </div>
 
 
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0 pb-2 mb-10'>
+
 ## What is Next?
 
-- ❎ `Iterable async` component
-- ❎ `useAsyncIterable` hook
+- ⏳ `useAsyncIterable` hook
+- ⏳ `Iterable async` component
 
 ```tsx
 async function* IterableComponent() {
@@ -87,4 +90,9 @@ async function* IterableComponent() {
 }
 ```
 
+- ⭐️ Star this repo if you like it! ❤❤❤
+- 👉 [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
+
 Please let me know if you have any ideas or suggestions! 🙏
+
+</div>

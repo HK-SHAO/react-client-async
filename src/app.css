@@ -8,9 +8,14 @@ a {
   @apply font-medium text-blue-600 no-underline hover:underline;
 }
 
+p {
+  text-wrap: pretty;
+}
+
 .btn {
   @apply rounded px-4 py-1 font-bold;
   @apply transition duration-150 ease-out;
+  @apply cursor-pointer;
 }
 
 .btn:hover {

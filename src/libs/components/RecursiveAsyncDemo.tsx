@@ -24,7 +24,7 @@ export default function RecursiveAsyncDemo() {
   const reload = useCallback(() => setSeed((prev) => prev + 1), []);
   return (
     <div className="flex flex-col justify-center items-center gap-4">
-      <div className="w-[42em] text-xs [&>.grid]:place-items-center font-mono">
+      <div className="w-[42em] text-xs [&>.grid]:place-items-center font-bold">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-28">
           <Async $fc={Rec} n={52} seed={seed} />
         </div>
