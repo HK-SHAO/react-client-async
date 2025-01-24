@@ -5,7 +5,7 @@ import {
   type AsyncFC,
   type FallbackFC,
 } from 'react-client-async';
-import delayWithSignal from '../utils/delayWithSignal';
+import delayWithSignal from '#utils/delayWithSignal';
 
 type DelayProps = {
   count: number;

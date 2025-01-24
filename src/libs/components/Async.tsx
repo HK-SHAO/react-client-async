@@ -4,9 +4,9 @@ import {
   type UseAsyncOptions,
   useAsync,
 } from 'react-client-async';
-import type { propsAreEqual } from '../types/react';
-import isAsyncFunction from '../utils/isAsyncFunction';
-import isReactMemo from '../utils/isReactMemo';
+import type { propsAreEqual } from '#types/react';
+import isAsyncFunction from '#utils/isAsyncFunction';
+import isReactMemo from '#utils/isReactMemo';
 
 /**
  * Symbol for getting the signal from the props of the async function component.

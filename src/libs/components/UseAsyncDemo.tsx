@@ -1,7 +1,7 @@
 import { type RefObject, useCallback, useRef } from 'react';
 import { type UseAsyncFn, useAsync } from 'react-client-async';
 import { ObjectInspector, chromeLight } from 'react-inspector';
-import delayWithSignal from '../utils/delayWithSignal';
+import delayWithSignal from '#utils/delayWithSignal';
 
 import { toast } from 'react-toastify';
 

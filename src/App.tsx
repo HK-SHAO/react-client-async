@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
-import Main from './libs/components/Main';
-import './app.css';
+import Main from '#components/Main';
+import '#src/app.css';
 
 const App = () => (
   <>

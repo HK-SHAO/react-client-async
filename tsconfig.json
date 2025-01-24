@@ -26,8 +26,13 @@
     "baseUrl": ".",
     "paths": {
       "#src/*": ["src/*"],
-      "#components/*": ["src/components/*"],
-      "#hooks/*": ["src/hooks/*"],
+      "#components/*": ["src/libs/components/*"],
+      "#constants/*": ["src/libs/constants/*"],
+      "#hooks/*": ["src/libs/hooks/*"],
+      "#types/*": ["src/libs/types/*"],
+      "#utils/*": ["src/libs/utils/*"],
+
+      /* This package */
       "react-client-async": ["src/lib.ts"]
     }
   },

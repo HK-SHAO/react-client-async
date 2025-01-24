@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { $signal, Async, type AsyncFC } from 'react-client-async';
-import delayWithSignal from '../utils/delayWithSignal';
+import delayWithSignal from '#utils/delayWithSignal';
 
 const Rec: AsyncFC<{ n: number; seed: number }> = memo(
   async ({ [$signal]: signal, n, seed }) =>

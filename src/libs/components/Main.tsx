@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
-import Code from './Code';
-import DemoPage from './DemoPage.mdx';
+import Code from '#components/Code';
+import DemoPage from '#components/DemoPage.mdx';
 
 const components: MDXComponents = { code: Code };
 

@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
