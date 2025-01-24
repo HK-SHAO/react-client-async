@@ -8,6 +8,7 @@ await ghpages.publish('dist', {
   dotfiles: false,
   remove: '.vscode',
   message: 'Deployed to Github Pages',
+  history: true,
   push: true,
 });
 
