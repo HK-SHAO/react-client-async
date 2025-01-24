@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
@@ -13,17 +13,26 @@
   "repository": "https://github.com/HK-SHAO/react-client-async",
   "description": "React tools for use async in client side",
   "readme": "README.md",
-  "keywords": ["react", "client", "async", "hooks"],
+  "keywords": [
+    "react",
+    "client",
+    "async",
+    "hooks",
+    "promise",
+    "recursion",
+    "componets",
+    "awaitable"
+  ],
   "license": "MIT",
   "scripts": {
     "build:app": "rsbuild build",
+    "build:lib": "rm -rf dist && tsc -p tsconfig.lib.json",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "format": "biome format --write",
     "preview": "rsbuild preview",
     "push:pages": "bun run scripts/push-pages.ts",
-    "deploy": "bun run build:app && bun run push:pages",
-    "build:lib": "rm -rf dist && tsc -p tsconfig.lib.json"
+    "deploy": "bun run build:app && bun run push:pages"
   },
   "dependencies": {},
   "peerDependencies": {

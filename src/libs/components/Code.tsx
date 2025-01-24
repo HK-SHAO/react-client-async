@@ -1,9 +1,11 @@
 import type { CSSProperties } from 'react';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
+SyntaxHighlighter.registerLanguage('bash', bash);
 
 const regExpLanguage = /language-(\w+)/;
 

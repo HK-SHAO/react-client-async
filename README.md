@@ -5,6 +5,12 @@
 
 Previously, `async component` were only supported on the server (Next.js). With this package, you can now easily use it on the client side as well.
 
+## Install
+
+```bash
+npm i react-client-async
+```
+
 
 ## `useAsync` Hook
 
@@ -22,9 +28,9 @@ You can use the `Async` component to render an async component.
 ```tsx
 <Async
   $fc={fc} // may be an async function component
-  $waiting={waiting}
-  $fallback={fallback}
-  {...props}
+  $waiting={waiting} // waiting component
+  $fallback={fallback} // fallback component
+  {...props} // props for the function component
 />
 ```
 
@@ -36,11 +42,11 @@ A component can be used with `memo` and `async` together!
 const Rec: AsyncFC<{ n: number; }> = memo(
   async ({ [$signal]: signal, n }) =>
     n <= 0 ? (
-      <>
+      <> {/* break the recursion */}
         <div>0</div>
       </>
     ) : (
-      <>
+      <> {/* delay and recursion */}
         {await delayWithSignal(99, signal)}
         {n}<Async $fc={Rec} n={n - 1} />{n}
       </>
@@ -62,7 +68,10 @@ async function* IterableComponent() {
 }
 ```
 
-Please let me know if you have any ideas or suggestions! 🙏
+- ⭐️ Star this repo if you like it! ❤❤❤
+- 👉 [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
+
+Looking forward to your feedback or contribution! 🚀🚀🚀
 
 
 ## Development
