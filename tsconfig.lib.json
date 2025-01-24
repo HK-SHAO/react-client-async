@@ -6,10 +6,10 @@
     "allowImportingTsExtensions": false,
 
     "module": "ES2020",
-    "outDir": "out",
+    "outDir": "dist",
     "declaration": true,
     "rootDir": "src"
   },
   "include": ["src/lib.ts"],
-  "exclude": ["node_modules", "out"]
+  "exclude": ["node_modules", "dist"]
 }

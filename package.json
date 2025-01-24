@@ -1,11 +1,10 @@
 {
   "name": "react-client-async",
-  "version": "1.0.3",
-  "main": "out/lib.js",
-  "module": "out/lib.js",
-  "files": ["out/"],
-  "types": "out/lib.d.ts",
-  "typings": "out/lib.d.ts",
+  "version": "1.0.4",
+  "main": "dist/lib.js",
+  "module": "dist/lib.js",
+  "files": ["dist/", "README.md", "LICENSE"],
+  "types": "dist/lib.d.ts",
   "author": {
     "name": "HK-SHAO",
     "email": "hk-shao@outlook.com"
@@ -24,12 +23,12 @@
     "preview": "rsbuild preview",
     "push:pages": "bun run scripts/push-pages.ts",
     "deploy": "bun run build:app && bun run push:pages",
-    "build:lib": "rm -rf out && tsc -p tsconfig.lib.json"
+    "build:lib": "rm -rf dist && tsc -p tsconfig.lib.json"
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
