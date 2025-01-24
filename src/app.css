@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+:root {
+  font-size: min(calc(2vw), 1em);
+  @apply overflow-x-hidden;
+}
+
+a {
+  @apply font-medium text-blue-600 no-underline hover:underline;
+}
+
 .btn {
   @apply rounded px-4 py-1 font-bold;
   @apply transition duration-150 ease-out;
