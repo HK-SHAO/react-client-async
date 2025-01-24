@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
@@ -9,7 +9,7 @@
     "name": "HK-SHAO",
     "email": "hk-shao@outlook.com"
   },
-  "homepage": "https://react-async.github.io",
+  "homepage": "https://shao.fun/react-client-async",
   "repository": "https://github.com/HK-SHAO/react-client-async",
   "description": "React tools for use async in client side",
   "readme": "README.md",
