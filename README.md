@@ -57,7 +57,7 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 ## What is Next?
 
 - ⏳ `useAsyncIterable` hook
-- ⏳ `Iterable async` component
+- ⏳ `AsyncIterable` component
 
 ```tsx
 async function* IterableComponent() {
