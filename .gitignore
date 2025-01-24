@@ -6,7 +6,6 @@
 # Dist
 node_modules
 dist/
-out/
 
 # IDE
 .idea
