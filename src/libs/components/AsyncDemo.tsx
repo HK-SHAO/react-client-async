@@ -1,5 +1,10 @@
 import { memo, useCallback, useMemo, useState } from 'react';
-import { $signal, Async, type AsyncFC } from 'react-client-async';
+import {
+  $signal,
+  Async,
+  type AsyncFC,
+  type FallbackFC,
+} from 'react-client-async';
 import delayWithSignal from '../utils/delayWithSignal';
 
 type DelayProps = {
@@ -38,14 +43,14 @@ export default function AsyncDemo() {
     setCount((prev) => prev + 1);
   }, []);
 
-  const fallback = useCallback(
-    ({ error }: { error: unknown }) => (
+  const fallback = useCallback<FallbackFC>(
+    ({ state }) => (
       <button
         type="button"
         className="flex justify-center items-center ml-2 btn btn-red"
         onClick={addCount}
       >
-        {error instanceof Error ? error.message : 'Unknown Error'}
+        {state.error instanceof Error ? state.error.message : 'Unknown Error'}
         <span className="inline bg-black/30 ml-2 px-4 py-0.5 rounded-full text-sm">
           {count}
         </span>

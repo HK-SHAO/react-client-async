@@ -16,6 +16,9 @@ export const $signal = Symbol('Siganl for Async Function Component');
 export type SignalSymbol = typeof $signal;
 export type SignalObject = { [$signal]: AbortSignal };
 export type AsyncFC<P> = FC<P & SignalObject>;
+export type State = ReturnType<typeof useAsync<unknown, ReactNode>>['state'];
+export type WaitingFC = AsyncFC<{ state: State }>;
+export type FallbackFC = AsyncFC<{ state: State }>;
 export type AsyncProps<P> = Omit<P, SignalSymbol> & {
   /**
    * The async function component.
@@ -24,11 +27,11 @@ export type AsyncProps<P> = Omit<P, SignalSymbol> & {
   /**
    * The waiting component.
    */
-  $waiting?: ReactNode | FC;
+  $waiting?: ReactNode | WaitingFC;
   /**
    * The fallback component.
    */
-  $fallback?: ReactNode | FC<{ error: unknown }>;
+  $fallback?: ReactNode | FallbackFC;
 };
 
 /**
@@ -74,7 +77,7 @@ export default function Async<P>({
 
   if (pending) {
     if (typeof $waiting !== 'function') return $waiting;
-    return <Async $fc={$waiting} />;
+    return <Async $fc={$waiting} state={state} />;
   }
 
   if (error && $fallback) {
@@ -84,7 +87,7 @@ export default function Async<P>({
         $fc={$fallback}
         $waiting={$waiting}
         $fallback={$fallback}
-        error={error}
+        state={state}
       />
     );
   }
