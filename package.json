@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
@@ -26,7 +26,8 @@
   "license": "MIT",
   "scripts": {
     "build:app": "rsbuild build",
-    "build:lib": "rm -rf dist && tsc -p tsconfig.lib.json",
+    "build:lib": "bun run scripts/build-lib.sh",
+    "build:lib:publish": "bun run build:lib && bun publish",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "format": "biome format --write",
@@ -59,6 +60,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "react-toastify": "^11.0.3",
     "tailwindcss": "^4.0.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.3"
   }
 }
