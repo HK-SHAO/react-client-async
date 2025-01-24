@@ -10,7 +10,7 @@ const Rec: AsyncFC<{ n: number; seed: number }> = memo(
       </>
     ) : (
       <>
-        {await delayWithSignal(90, signal)}
+        {await delayWithSignal(99, signal)}
         <div>{n}</div>
         <Async $fc={Rec} n={n - 1} seed={seed} />
         <div>{n}</div>

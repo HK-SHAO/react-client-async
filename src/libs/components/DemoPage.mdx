@@ -3,7 +3,7 @@ import RecursiveAsyncDemo from './RecursiveAsyncDemo';
 import UseAsyncDemo from './UseAsyncDemo';
 import Title from "./Title";
 
-<div className='w-full text-center text-4xl'>⚛️⏳</div>
+<div className='w-full text-center text-5xl mt-6'>⚛️⏳</div>
 
 # <Title/>
 
@@ -36,9 +36,9 @@ You can use the `Async` to render an async component.
 ```tsx
 <Async
   $fc={fc} // may be an async function component
-  $waiting={waiting}
-  $fallback={fallback}
-  {...props}
+  $waiting={waiting} // waiting component
+  $fallback={fallback} // fallback component
+  {...props} // props for the function component
 />
 ```
 
@@ -56,12 +56,12 @@ A component can be used with `memo` and `async` together!
 const Rec: AsyncFC<{ n: number; }> = memo(
   async ({ [$signal]: signal, n }) =>
     n <= 0 ? (
-      <>
+      <> {/* break the recursion */}
         <div>0</div>
       </>
     ) : (
-      <>
-        {await delayWithSignal(90, signal)}
+      <> {/* delay and recursion */}
+        {await delayWithSignal(99, signal)}
         {n}<Async $fc={Rec} n={n - 1} />{n}
       </>
     ),

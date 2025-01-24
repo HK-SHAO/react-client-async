@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-size: min(calc(2vw), 1em);
-  @apply overflow-x-hidden;
+  font-size: min(2vw, 1em);
 }
 
 a {
@@ -53,6 +52,10 @@ a {
 .json-view-container {
   @apply bg-transparent;
   @apply font-mono;
+}
+
+h1 {
+  @apply flex w-full items-center justify-center;
 }
 
 h2 {
