@@ -58,7 +58,7 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 ### Run & Build
 - Run demo: `bun dev`
 - Build demo: `bun run build:app`
-- Build library: `bun run build:lib`
+- Build package: `bun run build:lib`
 
 ### Deploy
 - Deploy demo to oa-pages: `bun run deploy`
