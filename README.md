@@ -48,8 +48,24 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 );
 ```
 
+## What is Next?
 
-## Development This Package
+- ❎ `Iterable async` component
+- ❎ `useAsyncIterable` hook
+
+```tsx
+async function* IterableComponent() {
+  yield* OtherIterableComponent();
+  yield  await component1();
+  yield  await component2();
+  yield  <div>...</div>;
+}
+```
+
+Please let me know if you have any ideas or suggestions! 🙏
+
+
+## Development
 
 ### Install
 - Install `bun` runtime: `npm install -g bun`
@@ -61,5 +77,5 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 - Build package: `bun run build:lib`
 
 ### Deploy
-- Deploy demo to oa-pages: `bun run deploy`
+- Deploy demo to github pages: `bun run deploy`
 - Publish the package to npm: `bun publish`

@@ -72,3 +72,19 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 
 </div>
 
+
+## What is Next?
+
+- ❎ `Iterable async` component
+- ❎ `useAsyncIterable` hook
+
+```tsx
+async function* IterableComponent() {
+  yield* OtherIterableComponent();
+  yield  await component1();
+  yield  await component2();
+  yield  <div>...</div>;
+}
+```
+
+Please let me know if you have any ideas or suggestions! 🙏
