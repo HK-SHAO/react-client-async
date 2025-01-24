@@ -41,7 +41,7 @@ const Rec: AsyncFC<{ n: number; }> = memo(
       </>
     ) : (
       <>
-        {await delayWithSignal(20, signal)}
+        {await delayWithSignal(90, signal)}
         {n}<Async $fc={Rec} n={n - 1} />{n}
       </>
     ),

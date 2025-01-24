@@ -10,7 +10,7 @@ const Rec: AsyncFC<{ n: number; seed: number }> = memo(
       </>
     ) : (
       <>
-        {await delayWithSignal(20, signal)}
+        {await delayWithSignal(90, signal)}
         <div>{n}</div>
         <Async $fc={Rec} n={n - 1} seed={seed} />
         <div>{n}</div>
@@ -25,8 +25,8 @@ export default function RecursiveAsyncDemo() {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="w-[42em] text-xs [&>.grid]:place-items-center font-mono">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-48">
-          <Async $fc={Rec} n={115} seed={seed} />
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-28">
+          <Async $fc={Rec} n={52} seed={seed} />
         </div>
       </div>
       <button
