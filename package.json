@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
@@ -10,7 +10,11 @@
     "email": "hk-shao@outlook.com"
   },
   "homepage": "https://shao.fun/react-client-async",
-  "repository": "https://github.com/HK-SHAO/react-client-async",
+  "bugs": "https://github.com/HK-SHAO/react-client-async/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HK-SHAO/react-client-async.git"
+  },
   "description": "React tools for use async in client side",
   "readme": "README.md",
   "keywords": [
@@ -26,14 +30,14 @@
   "license": "MIT",
   "scripts": {
     "build:app": "rsbuild build",
+    "build:app:deploy": "bun run build:app && bun run push:pages",
     "build:lib": "bun run scripts/build-lib.sh",
     "build:lib:publish": "bun run build:lib && bun publish",
+    "push:pages": "bun run scripts/push-pages.ts",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "format": "biome format --write",
-    "preview": "rsbuild preview",
-    "push:pages": "bun run scripts/push-pages.ts",
-    "deploy": "bun run build:app && bun run push:pages"
+    "preview": "rsbuild preview"
   },
   "dependencies": {},
   "peerDependencies": {
