@@ -1,0 +1,109 @@
+import AsyncDemo from './AsyncDemo';
+import RecursiveAsyncDemo from './RecursiveAsyncDemo';
+import UseAsyncDemo from './UseAsyncDemo';
+import Title from "./Title";
+
+<div className='w-full text-center text-5xl mt-10'>⚛️⏳</div>
+
+# <Title/>
+
+- `Demo:` [shao.fun/react-client-async](https://shao.fun/react-client-async/)
+- `Repo:` [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
+
+Previously, `async component` were only supported on the server (Next.js). 
+With this package, you can now easily use it on the client side as well.
+
+<div className='bg-gray-100 rounded-lg [&>h2]:mt-0 p-8'>
+
+## Install
+
+
+```bash
+npm i react-client-async
+```
+
+</div>
+
+
+<div className='bg-gray-100 rounded-lg mt-6 [&>h2]:mt-0 p-8'>
+
+## `useAsync` Hook
+
+You can use the `useAsync` hook to create a task.
+
+```tsx
+console.log(useAsync(fn, args, options));
+```
+
+<UseAsyncDemo />
+
+</div>
+
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+
+## `Async` Component
+
+You can use the `Async` to render an async component.
+
+```tsx
+<Async
+  $fc={fc} // may be an async function component
+  $waiting={waiting} // waiting component
+  $fallback={fallback} // fallback component
+  {...props} // props for the function component
+/>
+```
+
+<AsyncDemo />
+
+</div>
+
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+
+## `Demo` of Recursive Async Component
+
+A component can be used with `memo` and `async` together!
+
+```tsx
+const Rec: AsyncFC<{ n: number; }> = memo(
+  async ({ [$signal]: signal, n }) =>
+    n <= 0 ? (
+      <> {/* break the recursion */}
+        <div>0</div>
+      </>
+    ) : (
+      <> {/* delay and recursion */}
+        {await delayWithSignal(99, signal)}
+        {n}<Async $fc={Rec} n={n - 1} />{n}
+      </>
+    ),
+);
+```
+
+<RecursiveAsyncDemo />
+
+</div>
+
+
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0 pb-2 mb-10'>
+
+## What is Next?
+
+- ⏳ `useAsyncIterable` hook
+- ⏳ `Iterable async` component
+
+```tsx
+async function* IterableComponent() {
+  yield* OtherIterableComponent();
+  yield  await component1();
+  yield  await component2();
+  yield  <div>...</div>;
+}
+```
+
+- ⭐️ Star this repo if you like it! ❤❤❤
+- 👉 [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
+
+Looking forward to your feedback or contribution! 🚀🚀🚀
+
+</div>

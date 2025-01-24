@@ -1,0 +1,64 @@
+{
+  "name": "react-client-async",
+  "version": "1.0.5",
+  "main": "dist/lib.js",
+  "module": "dist/lib.js",
+  "files": ["dist/", "README.md", "LICENSE"],
+  "types": "dist/lib.d.ts",
+  "author": {
+    "name": "HK-SHAO",
+    "email": "hk-shao@outlook.com"
+  },
+  "homepage": "https://react-async.github.io",
+  "repository": "https://github.com/HK-SHAO/react-client-async",
+  "description": "React tools for use async in client side",
+  "readme": "README.md",
+  "keywords": [
+    "react",
+    "client",
+    "async",
+    "hooks",
+    "promise",
+    "recursion",
+    "componets",
+    "awaitable"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build:app": "rsbuild build",
+    "build:lib": "rm -rf dist && tsc -p tsconfig.lib.json",
+    "check": "biome check --write",
+    "dev": "rsbuild dev --open",
+    "format": "biome format --write",
+    "preview": "rsbuild preview",
+    "push:pages": "bun run scripts/push-pages.ts",
+    "deploy": "bun run build:app && bun run push:pages"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rsbuild/core": "^1.2.2",
+    "@rsbuild/plugin-mdx": "^1.0.2",
+    "@rsbuild/plugin-react": "^1.1.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/gh-pages": "^6.1.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.1",
+    "postcss-load-config": "^6.0.1",
+    "postcss-loader": "^8.1.1",
+    "react-inspector": "^6.0.2",
+    "react-syntax-highlighter": "^15.6.1",
+    "react-toastify": "^11.0.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}

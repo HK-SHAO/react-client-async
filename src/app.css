@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  font-size: min(2vw, 1em);
+}
+
+a {
+  @apply font-medium text-blue-600 no-underline hover:underline;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.btn {
+  @apply rounded px-4 py-1 font-bold;
+  @apply transition duration-150 ease-out;
+  @apply cursor-pointer;
+}
+
+.btn:hover {
+  @apply shadow-lg;
+}
+
+.btn:active {
+  @apply scale-90 transform;
+}
+
+.btn[disabled] {
+  @apply cursor-not-allowed opacity-50;
+}
+
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.btn-red {
+  @apply bg-red-500 text-white;
+}
+
+.btn-red:hover {
+  @apply bg-red-700;
+}
+
+.btn-gray {
+  @apply bg-gray-500 text-white;
+}
+
+.btn-gray:hover {
+  @apply bg-gray-700;
+}
+
+.json-view-container {
+  @apply bg-transparent;
+  @apply font-mono;
+}
+
+h1 {
+  @apply flex w-full items-center justify-center;
+}
+
+h2 {
+  @apply flex flex-row items-center gap-2;
+}
+
+code {
+  background: rgb(40, 44, 52);
+  @apply text-white;
+  @apply px-3 py-1;
+  @apply rounded-lg;
+}
+
+code::before {
+  content: "";
+}
+
+code::after {
+  content: "";
+}
+
+.prose pre {
+  background: rgb(40, 44, 52);
+  @apply text-sm;
+}
+
+.prose pre code {
+  @apply m-0 p-0;
+}
