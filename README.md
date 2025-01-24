@@ -1,7 +1,7 @@
 # ⚛️⏳ React Async for Client
 
-- `Demo:` [react-async.github.io](https://react-async.github.io)
-- `Repo:` [github.com/HK-SHAO/react-client-async](https://github.com/HK-SHAO/react-client-async)
+- `Demo:` [shao.fun/react-client-async](https://shao.fun/react-client-async/)
+- `Repo:` [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
 
 Previously, `async component` were only supported on the server (Next.js). With this package, you can now easily use it on the client side as well.
 

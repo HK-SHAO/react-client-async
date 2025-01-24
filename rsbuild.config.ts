@@ -5,4 +5,5 @@ import { pluginReact } from '@rsbuild/plugin-react';
 export default defineConfig({
   plugins: [pluginReact(), pluginMdx()],
   html: { title: 'React Client Side Async' },
+  output: { assetPrefix: './' },
 });

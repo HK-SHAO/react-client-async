@@ -4,7 +4,6 @@ console.info('Deploying to Github Pages...');
 
 await ghpages.publish('dist', {
   nojekyll: true,
-  cname: 'react-async.github.io',
   branch: 'gh-pages',
   dotfiles: false,
   remove: '.vscode',
