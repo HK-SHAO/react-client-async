@@ -1,0 +1,72 @@
+import AsyncDemo from './AsyncDemo';
+import RecursiveAsyncDemo from './RecursiveAsyncDemo';
+import UseAsyncDemo from './UseAsyncDemo';
+
+
+# ⚛️⏳ React Async for Client
+
+- `Demo:` [react-async.github.io](https://react-async.github.io)
+- `Repo:` [github.com/HK-SHAO/react-client-async](https://github.com/HK-SHAO/react-client-async)
+
+Previously, `async component` were only supported on the server (Next.js). With this package, you can now easily use it on the client side as well.
+
+
+<div className='bg-gray-100 rounded-lg [&>h2]:mt-0 p-8'>
+
+## `useAsync` Hook
+
+You can use the `useAsync` hook to create a task.
+
+```tsx
+console.log(useAsync(fn, args, options));
+```
+
+<UseAsyncDemo />
+
+</div>
+
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+
+## `Async` Component
+
+You can use the `Async` to render an async component.
+
+```tsx
+<Async
+  $fc={fc} // may be an async function component
+  $waiting={waiting}
+  $fallback={fallback}
+  {...props}
+/>
+```
+
+<AsyncDemo />
+
+</div>
+
+<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+
+## `Demo` of Recursive Async Component
+
+A component can be used with `memo` and `async` together!
+
+```tsx
+const Rec: AsyncFC<{ n: number; }> = memo(
+  async ({ [$signal]: signal, n }) =>
+    n <= 0 ? (
+      <>
+        <div>0</div>
+      </>
+    ) : (
+      <>
+        {await delayWithSignal(20, signal)}
+        {n}<Async $fc={Rec} n={n - 1} />{n}
+      </>
+    ),
+);
+```
+
+<RecursiveAsyncDemo />
+
+</div>
+

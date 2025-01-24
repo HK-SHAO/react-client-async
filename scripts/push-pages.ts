@@ -1,0 +1,15 @@
+import ghpages from 'gh-pages';
+
+console.info('Deploying to Github Pages...');
+
+await ghpages.publish('dist', {
+  nojekyll: true,
+  cname: 'react-async.github.io',
+  branch: 'gh-pages',
+  dotfiles: false,
+  remove: '.vscode',
+  message: 'Deployed to Github Pages',
+  push: true,
+});
+
+console.info('Finished deploying to Github Pages');

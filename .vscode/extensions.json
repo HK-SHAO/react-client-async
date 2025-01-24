@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "foxundermoon.shell-format",
+    "mishalestev.tailwind-css-language-mode-formatter"
+  ]
+}

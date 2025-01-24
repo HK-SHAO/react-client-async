@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": false,
+    "allowImportingTsExtensions": false,
+
+    "module": "ES2020",
+    "outDir": "out",
+    "declaration": true,
+    "rootDir": "src"
+  },
+  "include": ["src/lib.ts"],
+  "exclude": ["node_modules", "out"]
+}
