@@ -1,18 +1,33 @@
-# ⚛️⏳ React Async for Client
+<h1 align="center">
+  ⚛️⏳
+  <br/>
+  React Async for Client
+</h1>
 
-- `Demo:` [shao.fun/react-client-async](https://shao.fun/react-client-async/)
-- `Repo:` [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
+<p align="center">
+  <a href="https://shao.fun/react-client-async/" target="_blank">🎬 Demo</a>
+  <span> · </span>
+  <a href="https://github.com/HK-SHAO/react-client-async" target="_blank">🌟 Github</a>
+  <span> · </span>
+  <a href="https://www.npmjs.com/package/react-client-async" target="_blank">🚀 NPM</a>
+</p>
 
-Previously, `async component` were only supported on the server (Next.js). With this package, you can now easily use it on the client side as well.
+## 👋 Introduction
 
-## Install
+
+This package helps you use async function **<u>without</u>** the need to migrate to `⚛️ React 19` and server-side rendering! 
+
+- ✨ Supports `AbortSignal` and automatic abort on re-render.
+- ✨ Supports utility hooks to create and render asynchronous tasks.
+
+## 🚀 Install
 
 ```bash
 npm i react-client-async
 ```
 
 
-## `useAsync` Hook
+## ✅ `useAsync` Hook
 
 You can use the `useAsync` hook to create a task.
 
@@ -21,7 +36,7 @@ console.log(useAsync(fn, args, options));
 ```
 
 
-## `Async` Component
+## ✅ `Async` Component
 
 You can use the `Async` component to render an async component.
 
@@ -34,7 +49,7 @@ You can use the `Async` component to render an async component.
 />
 ```
 
-## `Demo` of Recursive Async Component
+## 🎬 `Demo` of Recursive Async Component
 
 A component can be used with `memo` and `async` together!
 
@@ -53,7 +68,7 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 );
 ```
 
-## What is Next?
+## ⏳ What is Next?
 
 - ⏳ `useAsyncIterable` hook
 - ⏳ `AsyncIterable` component
@@ -67,7 +82,7 @@ async function* IterableComponent() {
 }
 ```
 
-- ⭐️ Star this repo if you like it! ❤❤❤
+- 🌟 Star this repo if you like it! 🤩🤩🤩
 - 👉 [github.com/hk-shao/react-client-async](https://github.com/HK-SHAO/react-client-async)
 
 Looking forward to your feedback or contribution! 🚀🚀🚀

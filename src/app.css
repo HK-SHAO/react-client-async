@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 :root {
-  font-size: min(2vw, 1em);
+  font-size: min(2.5vw, 1em);
 }
