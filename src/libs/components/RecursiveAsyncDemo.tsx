@@ -7,14 +7,14 @@ const Rec = create<{ n: number; seed: number }>(
   async ({ [$signal]: signal, n, seed }) =>
     n <= 0 ? (
       <>
-        <div className="bg-text-flash-once">{n}</div>
+        <span>{n}</span>
       </>
     ) : (
       <>
         {await delayWithSignal(99, signal)}
-        <div className="bg-text-flash-once">{n}</div>
+        <span>{n}</span>
         <Rec n={n - 1} seed={seed} />
-        <div className="bg-text-flash-once">{n}</div>
+        <span>{n}</span>
       </>
     ),
 );
@@ -25,8 +25,8 @@ export default function RecursiveAsyncDemo() {
   const reload = useCallback(() => setSeed((prev) => prev + 1), []);
   return (
     <div className="flex flex-col justify-center items-center gap-4">
-      <div className="w-[42em] text-xs [&>.grid]:place-items-center">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-28 [&>div]:rounded-full">
+      <div className="w-[42em] text-xs [&>.grid]:place-items-center [&_*]:rounded-full">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-28 inner-bg-text-flash">
           <Async $fc={Rec} n={52} seed={seed} />
         </div>
       </div>
