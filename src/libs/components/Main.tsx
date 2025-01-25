@@ -10,7 +10,7 @@ export default function Main() {
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className="p-4 prose">
+        <div className="p-4 dark:prose-invert prose">
           <DemoPage components={components} />
         </div>
       </div>

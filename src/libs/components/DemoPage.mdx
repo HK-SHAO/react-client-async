@@ -7,7 +7,15 @@ import Title from "./Title";
 
 # <Title/>
 
-<div className='bg-gray-100 rounded-lg [&>h2]:mt-0 p-8'>
+export function Card({ className, children }) {
+  return (
+    <div className={`bg-gray-100 dark:bg-gray-100/10 rounded-lg [&>h2]:mt-0 p-8 ${className ?? ''}`}>
+      {children}
+    </div>
+  );
+}
+
+<Card className='pb-4'>
 
 ## 👋 Introduction
 
@@ -24,10 +32,6 @@ This package helps you use async function **<u>without</u>** the need to migrate
 - ✨ Supports `AbortSignal` and automatic abort on re-render.
 - ✨ Supports utility hooks to create and render asynchronous tasks.
 
-</div>
-
-<div className='bg-gray-100 rounded-lg mt-6 [&>h2]:mt-0 p-8'>
-
 ## 🚀 Install
 
 
@@ -35,10 +39,9 @@ This package helps you use async function **<u>without</u>** the need to migrate
 npm i react-client-async
 ```
 
-</div>
+</Card>
 
-
-<div className='bg-gray-100 rounded-lg mt-6 [&>h2]:mt-0 p-8'>
+<Card className='mt-6 pb-4'>
 
 ## ✅ `useAsync` Hook
 
@@ -50,9 +53,9 @@ console.log(useAsync(fn, args, options));
 
 <UseAsyncDemo />
 
-</div>
+</Card>
 
-<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+<Card className='mt-6 pb-8'>
 
 ## ✅ `Async` Component
 
@@ -69,9 +72,9 @@ You can use the `Async` to render an async component.
 
 <AsyncDemo />
 
-</div>
+</Card>
 
-<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0'>
+<Card className='mt-6 pb-8'>
 
 ## 🎬 `Demo` of Recursive Async Component
 
@@ -93,10 +96,10 @@ const Rec: AsyncFC<{ n: number; }> = memo(
 
 <RecursiveAsyncDemo />
 
-</div>
+</Card>
 
 
-<div className='bg-gray-100 p-8 rounded-lg mt-6 [&>h2]:mt-0 pb-2 mb-10'>
+<Card className='mt-6 pb-2 mb-10'>
 
 ## ⏳ What is Next?
 
@@ -117,4 +120,4 @@ async function* IterableComponent() {
 
 Looking forward to your feedback or contribution! 🚀🚀🚀
 
-</div>
+</Card>

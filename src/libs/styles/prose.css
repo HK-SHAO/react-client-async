@@ -27,6 +27,7 @@ code {
   @apply text-white;
   @apply px-3 py-1;
   @apply rounded-lg;
+  @apply outline-solid outline-white/30 outline-1;
 }
 
 code::before {
@@ -40,8 +41,10 @@ code::after {
 .prose pre {
   background: rgb(40, 44, 52);
   @apply text-sm;
+  @apply outline-solid outline-white/30 outline-1;
 }
 
 .prose pre code {
   @apply m-0 p-0;
+  @apply outline-none;
 }

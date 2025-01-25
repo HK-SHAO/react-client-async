@@ -2,4 +2,5 @@
 
 :root {
   font-size: min(2.5vw, 1em);
+  @apply dark:bg-gray-900;
 }
