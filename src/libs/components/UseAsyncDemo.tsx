@@ -46,7 +46,7 @@ export default function UseAsyncDemo() {
   const { pending } = task.state;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 rounded-lg">
+    <div className="flex flex-col justify-center items-center gap-2 bg-gray-950/10 dark:bg-gray-50/10 py-4 p-2 rounded-lg">
       <div className="dark:invert">
         <ObjectInspector
           data={task}
@@ -55,6 +55,7 @@ export default function UseAsyncDemo() {
         />
       </div>
 
+      <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
       <div className="flex gap-4">
         <button
           type="button"
