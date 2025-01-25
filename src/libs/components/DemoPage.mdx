@@ -67,16 +67,15 @@ A component can be used with `memo` and `async` together!
 ```tsx
 const Rec: AsyncFC<{ n: number; }> = memo(
   async ({ [$signal]: signal, n }) =>
-    n <= 0 ? (
-      <> {/* break the recursion */}
-        <div>0</div>
-      </>
-    ) : (
-      <> {/* delay and recursion */}
-        {await delayWithSignal(99, signal)}
+    (n <= 0) ? 
+    ( // break the recursion
+      <>{n}</>
+    )        : 
+    ( // delay and recursion
+      <>{await delayWithSignal(99, signal)}
         {n}<Async $fc={Rec} n={n - 1} />{n}
       </>
-    ),
+    )
 );
 ```
 

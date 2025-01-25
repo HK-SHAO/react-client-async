@@ -49,7 +49,7 @@ export const $abortedByRerender = Symbol('Aborted By Rerender');
 /**
  * The symbol for aborted by user.
  */
-export const $abortedByUser = Symbol('Aborted By User');
+export const $abortedByStop = Symbol('Aborted By Stop');
 
 /**
  * Return type of the useAsync hook.
@@ -139,7 +139,7 @@ export default function useAsync<Args, Ret>(
   // The stop function to stop the async function.
   const stop = useCallback(() => {
     const abortCtl = abortCtlRef.current;
-    abortCtl?.abort($abortedByUser);
+    abortCtl?.abort($abortedByStop);
   }, []);
 
   // Check if no need to rerun the async function.

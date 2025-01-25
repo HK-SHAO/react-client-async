@@ -26,15 +26,24 @@ export default function UseAsyncDemo() {
   const task = useAsync(fetchSome, { cntRef });
 
   const load = useCallback(async () => {
-    try {
-      const ret = await task.load();
-      toast.success(`Result: ${ret}`);
-    } catch (e) {
-      toast.error(`${String(e)}`);
-    }
+    toast.promise(task.load(), {
+      pending: 'Promise is pending',
+      success: {
+        render({ data }) {
+          return `Result: ${String(data)}`;
+        },
+      },
+      error: {
+        render({ data }) {
+          return `Error: ${String(data)}`;
+        },
+      },
+    });
   }, [task.load]);
 
   const stop = useCallback(() => task.stop(), [task.stop]);
+
+  const { pending } = task.state;
 
   return (
     <div className="flex flex-col justify-center items-center gap-2 bg-gray-200 py-4 p-2 rounded-lg">
@@ -47,10 +56,20 @@ export default function UseAsyncDemo() {
 
       <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
       <div className="flex gap-4">
-        <button type="button" className="btn btn-blue" onClick={load}>
-          Load
+        <button
+          type="button"
+          className="btn btn-blue"
+          onClick={load}
+          disabled={pending}
+        >
+          {pending ? 'Loading...' : 'Load'}
         </button>
-        <button type="button" className="btn btn-red" onClick={stop}>
+        <button
+          type="button"
+          className="btn btn-red"
+          onClick={stop}
+          disabled={!pending}
+        >
           Stop
         </button>
       </div>

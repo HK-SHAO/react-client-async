@@ -10,7 +10,7 @@ export {
 export {
   default as useAsync,
   $abortedByRerender,
-  $abortedByUser,
+  $abortedByStop,
   type UseAsyncFn,
   type UseAsyncOptions,
 } from '#hooks/useAsync';

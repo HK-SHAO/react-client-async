@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+a {
+  @apply font-medium text-blue-600 no-underline hover:underline;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.json-view-container {
+  @apply bg-transparent;
+  @apply font-mono;
+}
+
+h1 {
+  @apply flex w-full items-center justify-center;
+  @apply mb-10;
+}
+
+h2 {
+  @apply flex flex-row items-center gap-2;
+}
+
+code {
+  background: rgb(40, 44, 52);
+  @apply text-white;
+  @apply px-3 py-1;
+  @apply rounded-lg;
+}
+
+code::before {
+  content: "";
+}
+
+code::after {
+  content: "";
+}
+
+.prose pre {
+  background: rgb(40, 44, 52);
+  @apply text-sm;
+}
+
+.prose pre code {
+  @apply m-0 p-0;
+}

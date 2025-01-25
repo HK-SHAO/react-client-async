@@ -29,6 +29,7 @@
       "#components/*": ["src/libs/components/*"],
       "#constants/*": ["src/libs/constants/*"],
       "#hooks/*": ["src/libs/hooks/*"],
+      "#styles/*": ["src/libs/styles/*"],
       "#types/*": ["src/libs/types/*"],
       "#utils/*": ["src/libs/utils/*"],
 
