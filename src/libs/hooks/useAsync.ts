@@ -1,4 +1,4 @@
-import { type RefObject, useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { propsAreEqual } from '../types/react';
 import type { Awaitable } from '../types/utils';
 import sameProps from '../utils/sameProps';
@@ -6,14 +6,14 @@ import sameProps from '../utils/sameProps';
 /**
  * The extras for the async function.
  */
-export type UseAsyncFnExtras = {
+type UseAsyncFnExtras = {
   /**
    * The signal to abort the async function.
    */
   signal: AbortSignal;
 };
 
-export type UseAsyncFn<Args = unknown, Ret = unknown> = (
+type UseAsyncFn<Args = unknown, Ret = unknown> = (
   /**
    * Arguments for the async function.
    */
@@ -24,11 +24,8 @@ export type UseAsyncFn<Args = unknown, Ret = unknown> = (
   extras: UseAsyncFnExtras,
 ) => Awaitable<Ret>;
 
-export type RunAsync<Ret> = (signal?: AbortSignal) => Promise<Ret>;
-export type RunAsyncRef<Ret> = RefObject<RunAsync<Ret> | null>;
-export type AbortCtlRef = RefObject<AbortController | null>;
-
-export type UseAsyncObject<P> = {
+type RunAsync<Ret> = (signal?: AbortSignal) => Promise<Ret>;
+type UseAsyncObject<P> = {
   /**
    * If `true`, the async function will run automatically.
    */
@@ -39,22 +36,22 @@ export type UseAsyncObject<P> = {
   sampeArgs: propsAreEqual<P>;
 };
 
-export type UseAsyncOptions<P> = Partial<UseAsyncObject<P>>;
+type UseAsyncOptions<P> = Partial<UseAsyncObject<P>>;
 
 /**
  * The symbol for aborted by rerender.
  */
-export const $abortedByRerender = Symbol('Aborted By Rerender');
+const $abortedByRerender = Symbol('Aborted By Rerender');
 
 /**
  * The symbol for aborted by user.
  */
-export const $abortedByStop = Symbol('Aborted By Stop');
+const $abortedByStop = Symbol('Aborted By Stop');
 
 /**
  * Return type of the useAsync hook.
  */
-export type UseAsyncReturn<Ret> = {
+type UseAsyncReturn<Ret> = {
   /**
    * The pending state, result, and error.
    */
@@ -89,7 +86,7 @@ export type UseAsyncReturn<Ret> = {
  * @param options Options for using the async function.
  * @returns The pending state, result, and error.
  */
-export default function useAsync<Args, Ret>(
+function useAsync<Args, Ret>(
   /**
    * The async function to run.
    */
@@ -104,7 +101,7 @@ export default function useAsync<Args, Ret>(
   options: UseAsyncOptions<Args> = {},
 ): UseAsyncReturn<Ret> {
   // Set default options
-  options.autoLoad ??= true;
+  options.autoLoad ??= false;
   options.sampeArgs ??= sameProps;
 
   const [pending, setPending] = useState<boolean>();
@@ -199,3 +196,11 @@ export default function useAsync<Args, Ret>(
   // Return the hook return.
   return hookReturn;
 }
+
+export {
+  useAsync as default,
+  $abortedByRerender,
+  $abortedByStop,
+  type UseAsyncFn,
+  type UseAsyncOptions,
+};

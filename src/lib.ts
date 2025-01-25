@@ -5,6 +5,7 @@ export {
   type State,
   type WaitingFC,
   type FallbackFC,
+  type AsyncProps,
 } from '#components/Async';
 
 export {

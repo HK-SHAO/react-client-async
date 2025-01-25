@@ -1,25 +1,26 @@
-import { type Attributes, type FC, type ReactNode, useCallback } from 'react';
+import { type Attributes, type ReactNode, useCallback } from 'react';
 import {
   type UseAsyncFn,
   type UseAsyncOptions,
   useAsync,
 } from 'react-client-async';
-import type { propsAreEqual } from '#types/react';
+import type { InnerFC, propsAreEqual } from '#types/react';
 import isAsyncFunction from '#utils/isAsyncFunction';
 import isReactMemo from '#utils/isReactMemo';
 
 /**
  * Symbol for getting the signal from the props of the async function component.
  */
-export const $signal = Symbol('Siganl for Async Function Component');
+const $signal = Symbol('Siganl for Async Function Component');
 
-export type SignalSymbol = typeof $signal;
-export type SignalObject = { [$signal]: AbortSignal };
-export type AsyncFC<P> = FC<P & SignalObject>;
-export type State = ReturnType<typeof useAsync<unknown, ReactNode>>['state'];
-export type WaitingFC = AsyncFC<{ state: State }>;
-export type FallbackFC = AsyncFC<{ state: State }>;
-export type AsyncProps<P> = Omit<P, SignalSymbol> & {
+type SignalSymbol = typeof $signal;
+type SignalObject = { [$signal]: AbortSignal };
+
+type AsyncFC<P> = InnerFC<P & SignalObject>;
+type State = ReturnType<typeof useAsync<unknown, ReactNode>>['state'];
+type WaitingFC = AsyncFC<{ state: State }>;
+type FallbackFC = AsyncFC<{ state: State }>;
+type AsyncProps<P> = Omit<P, SignalSymbol> & {
   /**
    * The async function component.
    */
@@ -37,7 +38,7 @@ export type AsyncProps<P> = Omit<P, SignalSymbol> & {
 /**
  * The `Async` component for rendering async function components.
  */
-export default function Async<P>({
+function Async<P>({
   $fc,
   $waiting,
   $fallback,
@@ -60,7 +61,7 @@ export default function Async<P>({
   }
 
   if (!asyncFc) {
-    const F = $fc as FC<P>;
+    const F = $fc as InnerFC<P>;
     const x = props as P & Attributes;
     return <F {...x} />;
   }
@@ -96,3 +97,13 @@ export default function Async<P>({
 
   return result;
 }
+
+export {
+  Async as default,
+  $signal,
+  type AsyncFC,
+  type State,
+  type WaitingFC,
+  type FallbackFC,
+  type AsyncProps,
+};

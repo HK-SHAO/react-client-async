@@ -41,8 +41,8 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "^16 || ^17 || ^18 || ^19",
+    "react-dom": "^16 || ^17 || ^18 || ^19"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
