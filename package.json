@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/HK-SHAO/react-client-async.git"
   },
-  "description": "React tools for use async in client side",
+  "description": "React tools for async rendering in client side.",
   "readme": "README.md",
   "keywords": [
     "react",

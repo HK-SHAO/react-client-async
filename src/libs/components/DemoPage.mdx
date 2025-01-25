@@ -2,18 +2,11 @@ import AsyncDemo from './AsyncDemo';
 import RecursiveAsyncDemo from './RecursiveAsyncDemo';
 import UseAsyncDemo from './UseAsyncDemo';
 import Title from "./Title";
+import Card from "./Card";
 
 <div className='w-full text-center text-5xl mt-10'>⚛️⏳</div>
 
 # <Title/>
-
-export function Card({ className, children }) {
-  return (
-    <div className={`bg-gray-100 dark:bg-gray-100/10 rounded-lg [&>h2]:mt-0 p-8 ${className ?? ''}`}>
-      {children}
-    </div>
-  );
-}
 
 <Card className='pb-4'>
 

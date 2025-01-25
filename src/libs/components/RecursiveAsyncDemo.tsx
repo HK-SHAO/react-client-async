@@ -12,7 +12,7 @@ const Rec = create<{ n: number; seed: number }>(
     ) : (
       <>
         {await delayWithSignal(99, signal)}
-        <div className="bg-text-flash-oncep">{n}</div>
+        <div className="bg-text-flash-once">{n}</div>
         <Rec n={n - 1} seed={seed} />
         <div className="bg-text-flash-once">{n}</div>
       </>
