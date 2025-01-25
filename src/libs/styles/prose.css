@@ -23,6 +23,13 @@ h2 {
   @apply flex flex-row items-center gap-2;
 }
 
+h2 > a {
+  @apply font-bold text-inherit;
+  @apply transition-all duration-150 ease-out;
+  @apply origin-left hover:scale-110;
+  @apply hover:no-underline;
+}
+
 code {
   background: rgb(40, 44, 52);
   @apply text-white;
