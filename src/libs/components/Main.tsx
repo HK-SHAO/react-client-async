@@ -3,10 +3,21 @@ import Code from '#components/Code';
 import DemoPage from '#components/DemoPage.mdx';
 
 import '#styles/prose.css';
+import { useEffect } from 'react';
 
 const components: MDXComponents = { code: Code };
 
+function scrollToHash() {
+  if (typeof window === 'undefined') return;
+  const hashTag = window.location.hash.substring(1);
+  const element = document.getElementById(hashTag);
+  element?.scrollIntoView({ behavior: 'smooth' });
+}
+
 export default function Main() {
+  // Automatically scroll to the hash tag.
+  useEffect(scrollToHash, []);
+
   return (
     <>
       <div className="flex justify-center items-center">
