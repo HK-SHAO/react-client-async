@@ -18,7 +18,7 @@ const inspectorTheme: typeof chromeLight = {
 type FetchSome = UseAsyncFn<{ cntRef: RefObject<number> }, string>;
 const fetchSome: FetchSome = async ({ cntRef }, { signal }) => {
   await delayWithSignal(1000, signal);
-  return `${cntRef.current++} times`;
+  return `${++cntRef.current} times`;
 };
 
 export default function UseAsyncDemo() {
