@@ -81,9 +81,9 @@ Looking forward to your feedback or contribution! 🚀🚀🚀
 
 ### Run & Build
 - Run demo: `bun dev`
-- Build demo: `bun run build:app`
-- Build package: `bun run build:lib`
+- Build demo: `bun build:app`
+- Build package: `bun build:lib`
 
 ### Deploy
-- Deploy demo to github pages: `bun run deploy`
-- Publish the package to npm: `bun publish`
+- Deploy demo to github pages: `bun build:app:deploy`
+- Publish this package to npm: `bun build:lib:publish`
