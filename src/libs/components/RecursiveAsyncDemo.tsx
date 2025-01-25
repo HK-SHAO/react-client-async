@@ -1,19 +1,20 @@
-import { memo, useCallback, useState } from 'react';
-import { $signal, Async, type AsyncFC } from 'react-client-async';
+import { useCallback, useState } from 'react';
+
+import { $signal, Async, create } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
-const Rec: AsyncFC<{ n: number; seed: number }> = memo(
+const Rec = create<{ n: number; seed: number }>(
   async ({ [$signal]: signal, n, seed }) =>
     n <= 0 ? (
       <>
-        <div>{n}</div>
+        <div className="bg-text-flash-once">{n}</div>
       </>
     ) : (
       <>
         {await delayWithSignal(99, signal)}
-        <div>{n}</div>
-        <Async $fc={Rec} n={n - 1} seed={seed} />
-        <div>{n}</div>
+        <div className="bg-text-flash-once">{n}</div>
+        <Rec n={n - 1} seed={seed} />
+        <div className="bg-text-flash-once">{n}</div>
       </>
     ),
 );

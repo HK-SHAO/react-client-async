@@ -78,18 +78,18 @@ You can use the `Async` to render an async component.
 
 ## 🎬 `Demo` of Recursive Async Component
 
-A component can be used with `memo` and `async` together!
+Easy to `create` an memoized async component with recursion.
 
 ```tsx
-const Rec: AsyncFC<{ n: number; }> = memo(
+const Rec = create<{ n: number }>(
   async ({ [$signal]: signal, n }) =>
     // break the recursion
     (n <= 0) ? 0 : (
     // delay and recursion
-    <> 
-      {await delayWithSignal(99, signal)}
-      {n}<Async $fc={Rec} n={n - 1} />{n}
-    </>
+      <>
+        {await delay(99, signal)}
+        {n} <Rec n={n - 1} /> {n}
+      </>
     )
 );
 ```

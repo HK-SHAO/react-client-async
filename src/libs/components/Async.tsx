@@ -1,11 +1,11 @@
-import { type Attributes, type ReactNode, useCallback } from 'react';
+import { type ReactNode, memo, useCallback } from 'react';
+
 import {
   type UseAsyncFn,
   type UseAsyncOptions,
   useAsync,
 } from 'react-client-async';
 import type { InnerFC, propsAreEqual } from '#types/react';
-import isAsyncFunction from '#utils/isAsyncFunction';
 import isReactMemo from '#utils/isReactMemo';
 
 /**
@@ -46,38 +46,24 @@ function Async<P>({
 }: AsyncProps<P>): ReactNode {
   type Fn = UseAsyncFn<P, ReactNode>;
 
-  let asyncFc: AsyncFC<P> | undefined;
+  let fc: AsyncFC<P> = $fc;
   let sampeArgs: propsAreEqual<P> | undefined;
 
-  // Check if the async function component is an async function.
-  const isAsync = isAsyncFunction($fc);
-  if (isAsync) {
-    asyncFc = $fc;
-  }
-
   // Check if the async function component is a memo component.
-  const isMemo = isReactMemo<P>($fc);
-  if (isMemo) {
-    asyncFc = $fc.type;
+  if (isReactMemo<P>($fc)) {
+    fc = $fc.type;
     sampeArgs = $fc.compare;
-  }
-
-  // If regular function component, directly render it.
-  if (!asyncFc) {
-    const F = $fc as InnerFC<P>;
-    const x = props as P & Attributes;
-    return <F {...x} />;
   }
 
   // Create the async function.
   const args = props as P;
   const fn = useCallback<Fn>(
-    (props, { signal }) => asyncFc({ ...props, [$signal]: signal }),
-    [asyncFc],
+    (props, { signal }) => fc({ ...props, [$signal]: signal }),
+    [fc],
   );
 
   // Create the options for the async function.
-  const options: UseAsyncOptions<P> = { autoLoad: true, sampeArgs };
+  const options = { autoLoad: true, sampeArgs } satisfies UseAsyncOptions<P>;
 
   // Execute the async function and get the state.
   const { state } = useAsync(fn, args, options);
@@ -109,12 +95,17 @@ function Async<P>({
   return result;
 }
 
+function create<P>(fc: AsyncFC<P>) {
+  return memo((props: P) => <Async $fc={fc} {...props} />);
+}
+
 export {
   Async as default,
   $signal,
   type AsyncFC,
+  type AsyncProps,
+  create,
+  type FallbackFC,
   type State,
   type WaitingFC,
-  type FallbackFC,
-  type AsyncProps,
 };

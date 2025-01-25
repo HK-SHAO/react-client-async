@@ -5,3 +5,19 @@
   @apply bg-white text-black;
   @apply dark:bg-black/90;
 }
+
+@keyframes bg-text-flash {
+  from {
+    background-color: color-mix(in oklab, var(--color-blue-300) /* oklch(0.809 0.105 251.813) */ 90%, transparent);
+    color: black;
+  }
+
+  to {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
+.bg-text-flash-once {
+  animation: bg-text-flash 0.5s ease-out;
+}

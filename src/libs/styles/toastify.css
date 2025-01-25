@@ -19,7 +19,7 @@
   height: 1.375em;
 }
 
-.Toastify__close-button>svg {
+.Toastify__close-button > svg {
   fill: currentColor;
   height: 1em;
   width: 0.875em;
@@ -30,7 +30,7 @@
   right: 0.375em;
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width: 480px) {
   .Toastify__toast-container--top-right {
     top: var(--toastify-toast-top);
     left: unset;
@@ -40,7 +40,7 @@
   }
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (max-width: 480px) {
   .Toastify__toast {
     --toastify-toast-width: 20em;
     margin-bottom: 1em;

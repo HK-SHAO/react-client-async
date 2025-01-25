@@ -2,10 +2,11 @@ export {
   default as Async,
   $signal,
   type AsyncFC,
+  type AsyncProps,
+  create,
+  type FallbackFC,
   type State,
   type WaitingFC,
-  type FallbackFC,
-  type AsyncProps,
 } from '#components/Async';
 
 export {
