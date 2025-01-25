@@ -4,16 +4,18 @@ import UseAsyncDemo from './UseAsyncDemo';
 import Title from "./Title";
 import Card from "./Card";
 
+import { toast } from 'react-toastify';
+
 <div className='w-full text-center text-5xl mt-10'>⚛️⏳</div>
 
 # <Title/>
 
-<Card className='pb-4'>
+<Card className='pb-4 mt-10'>
 
 ## 👋 Introduction
 
 <p align="center">
-  <a href="https://shao.fun/react-client-async/" target="_blank">🎬 Demo</a>
+  <a href="#" type="button" onClick={()=>{ toast.info("Here is the Demo page! 🎉") }}>🎬 Demo</a>
   <span> · </span>
   <a href="https://github.com/HK-SHAO/react-client-async" target="_blank">🌟 Source</a>
   <span> · </span>
@@ -34,7 +36,7 @@ npm i react-client-async
 
 </Card>
 
-<Card className='mt-6 pb-4'>
+<Card className='mt-10 pb-4'>
 
 ## ✅ `useAsync` Hook
 
@@ -48,7 +50,7 @@ console.log(useAsync(fn, args, options));
 
 </Card>
 
-<Card className='mt-6 pb-8'>
+<Card className='mt-10 pb-8'>
 
 ## ✅ `Async` Component
 
@@ -67,7 +69,7 @@ You can use the `Async` to render an async component.
 
 </Card>
 
-<Card className='mt-6 pb-8'>
+<Card className='mt-10 pb-8'>
 
 ## 🎬 `Demo` of Recursive Async Component
 
@@ -92,7 +94,7 @@ const Rec = create<{ n: number }>(
 </Card>
 
 
-<Card className='mt-6 pb-2 mb-10'>
+<Card className='mt-10 pb-2 mb-10'>
 
 ## ⏳ What is Next?
 
