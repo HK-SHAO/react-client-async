@@ -51,7 +51,7 @@ You can use the `Async` component to render an async component.
 
 ## 🎬 `Demo` of Recursive Async Component
 
-Easy to `create` an memoized async component with recursion.
+Easy to `create` a memoized recursive async component.
 
 ```tsx
 const Rec = create<{ n: number }>(
