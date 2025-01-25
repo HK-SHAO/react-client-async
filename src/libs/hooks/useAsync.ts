@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
+import { MAX_SAFE_INTEGER } from '../constants/basic';
 import type { propsAreEqual } from '../types/react';
 import type { Awaitable } from '../types/utils';
 import sameProps from '../utils/sameProps';
@@ -127,7 +128,7 @@ function useAsync<Args, Ret>(
       abortCtl?.abort(signal.reason);
     });
 
-    setRefresh((n) => (n + 1) % 3);
+    setRefresh((n) => (n + 1) % MAX_SAFE_INTEGER);
 
     resolversRef.current = Promise.withResolvers();
     return resolversRef.current.promise;
