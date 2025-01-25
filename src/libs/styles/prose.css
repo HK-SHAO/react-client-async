@@ -2,6 +2,7 @@
 
 a {
   @apply font-medium text-blue-600 no-underline hover:underline;
+  @apply dark:text-blue-400;
 }
 
 p {
@@ -27,7 +28,7 @@ code {
   @apply text-white;
   @apply px-3 py-1;
   @apply rounded-lg;
-  @apply outline-solid outline-white/30 outline-1;
+  @apply outline-solid outline-white/20 outline-1;
 }
 
 code::before {
@@ -41,7 +42,7 @@ code::after {
 .prose pre {
   background: rgb(40, 44, 52);
   @apply text-sm;
-  @apply outline-solid outline-white/30 outline-1;
+  @apply outline-solid outline-white/20 outline-1;
 }
 
 .prose pre code {

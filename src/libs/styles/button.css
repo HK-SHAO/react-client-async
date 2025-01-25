@@ -20,24 +20,21 @@
 
 .btn-blue {
   @apply bg-blue-500 text-white;
-}
-
-.btn-blue:hover {
-  @apply bg-blue-700;
+  @apply hover:bg-blue-700;
+  @apply dark:bg-blue-400;
+  @apply dark:hover:bg-blue-600;
 }
 
 .btn-red {
   @apply bg-red-500 text-white;
-}
-
-.btn-red:hover {
-  @apply bg-red-700;
+  @apply hover:bg-red-700;
+  @apply dark:bg-red-400;
+  @apply dark:hover:bg-red-600;
 }
 
 .btn-gray {
   @apply bg-gray-500 text-white;
-}
-
-.btn-gray:hover {
-  @apply bg-gray-700;
+  @apply hover:bg-gray-700;
+  @apply dark:bg-gray-400;
+  @apply dark:hover:bg-gray-600;
 }
