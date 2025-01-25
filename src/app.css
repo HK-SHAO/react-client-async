@@ -8,7 +8,7 @@
 
 @keyframes bg-text-flash {
   from {
-    background-color: color-mix(in oklab, var(--color-blue-300) /* oklch(0.809 0.105 251.813) */ 90%, transparent);
+    background-color: oklch(0.809 0.105 251.813);
     color: black;
   }
 
