@@ -7,9 +7,9 @@
 <p align="center">
   <a href="https://shao.fun/react-client-async/" target="_blank">🎬 Demo</a>
   <span> · </span>
-  <a href="https://github.com/HK-SHAO/react-client-async" target="_blank">🌟 Github</a>
+  <a href="https://github.com/HK-SHAO/react-client-async" target="_blank">🌟 Source</a>
   <span> · </span>
-  <a href="https://www.npmjs.com/package/react-client-async" target="_blank">🚀 NPM</a>
+  <a href="https://www.npmjs.com/package/react-client-async" target="_blank">🚀 Package</a>
 </p>
 
 ## 👋 Introduction
@@ -56,14 +56,13 @@ A component can be used with `memo` and `async` together!
 ```tsx
 const Rec: AsyncFC<{ n: number; }> = memo(
   async ({ [$signal]: signal, n }) =>
-    (n <= 0) ? 
-    ( // break the recursion
-      <>{n}</>
-    )        : 
-    ( // delay and recursion
-      <>{await delayWithSignal(99, signal)}
-        {n}<Async $fc={Rec} n={n - 1} />{n}
-      </>
+    // break the recursion
+    (n <= 0) ? 0 : (
+    // delay and recursion
+    <> 
+      {await delayWithSignal(99, signal)}
+      {n}<Async $fc={Rec} n={n - 1} />{n}
+    </>
     )
 );
 ```
