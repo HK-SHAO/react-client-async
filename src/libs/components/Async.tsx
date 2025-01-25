@@ -49,38 +49,47 @@ function Async<P>({
   let asyncFc: AsyncFC<P> | undefined;
   let sampeArgs: propsAreEqual<P> | undefined;
 
+  // Check if the async function component is an async function.
   const isAsync = isAsyncFunction($fc);
   if (isAsync) {
     asyncFc = $fc;
   }
 
+  // Check if the async function component is a memo component.
   const isMemo = isReactMemo<P>($fc);
   if (isMemo) {
     asyncFc = $fc.type;
     sampeArgs = $fc.compare;
   }
 
+  // If regular function component, directly render it.
   if (!asyncFc) {
     const F = $fc as InnerFC<P>;
     const x = props as P & Attributes;
     return <F {...x} />;
   }
 
+  // Create the async function.
   const args = props as P;
   const fn = useCallback<Fn>(
     (props, { signal }) => asyncFc({ ...props, [$signal]: signal }),
     [asyncFc],
   );
 
+  // Create the options for the async function.
   const options: UseAsyncOptions<P> = { autoLoad: true, sampeArgs };
+
+  // Execute the async function and get the state.
   const { state } = useAsync(fn, args, options);
   const { pending, result, error } = state;
 
+  // Render pending state.
   if (pending) {
     if (typeof $waiting !== 'function') return $waiting;
     return <Async $fc={$waiting} state={state} />;
   }
 
+  // Render error state.
   if (error && $fallback) {
     if (typeof $fallback !== 'function') return $fallback;
     return (
@@ -93,8 +102,10 @@ function Async<P>({
     );
   }
 
+  // No fallback, throw the error.
   if (error) throw error;
 
+  // Renturn the rendered result.
   return result;
 }
 
