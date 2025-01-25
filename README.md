@@ -17,8 +17,8 @@
 
 This package helps you use async function **<u>without</u>** the need to migrate to `⚛️ React 19` and server-side rendering! 
 
+- ✨ Supports utility hooks to create and render async tasks.
 - ✨ Supports `AbortSignal` and automatic abort on re-render.
-- ✨ Supports utility hooks to create and render asynchronous tasks.
 
 ## 🚀 Install
 
