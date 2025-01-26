@@ -61,7 +61,7 @@ function Async<P>({
   // Create the options for the async function.
   const options = {
     autoLoad: true,
-    sampArgs: sameArgs,
+    sameArgs,
   } satisfies UseAsyncOptions<P>;
 
   // Execute the async function and get the state.

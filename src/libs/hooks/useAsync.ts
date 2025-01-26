@@ -34,7 +34,7 @@ type UseAsyncObject<P> = {
   /**
    * Determine the arguments are the same.
    */
-  sampArgs: propsAreEqual<P>;
+  sameArgs: propsAreEqual<P>;
 };
 
 type UseAsyncOptions<P> = Partial<UseAsyncObject<P>>;
@@ -108,7 +108,7 @@ function useAsync<Args, Ret>(
 ): UseAsyncReturn<Ret> {
   // Set default options
   options.autoLoad ??= false;
-  options.sampArgs ??= sameProps;
+  options.sameArgs ??= sameProps;
 
   const [pending, setPending] = useState<boolean>();
   const [result, setResult] = useState<Ret>();
@@ -148,7 +148,7 @@ function useAsync<Args, Ret>(
 
   // Check if no need to rerun the async function.
   const sameFn = fnRef.current === promiseFn;
-  const sameArgs = options.sampArgs?.(argsRef.current, args);
+  const sameArgs = options.sameArgs?.(argsRef.current, args);
   const sameRefresh = refreshRef.current === refresh;
   const notFirstRun = pending !== undefined || !options.autoLoad;
   const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
