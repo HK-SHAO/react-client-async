@@ -25,7 +25,6 @@ type UseAsyncFn<Args = unknown, Ret = unknown> = (
   extras: UseAsyncFnExtras,
 ) => Awaitable<Ret>;
 
-type RunAsync<Ret> = (signal?: AbortSignal) => Promise<Ret>;
 type UseAsyncObject<P> = {
   /**
    * If `true`, the async function will run automatically.
@@ -43,11 +42,6 @@ type UseAsyncOptions<P> = Partial<UseAsyncObject<P>>;
  * The symbol for aborted by rerender.
  */
 const $abortedByRerender = Symbol('Aborted By Rerender');
-
-/**
- * The symbol for aborted by user.
- */
-const $abortedByStop = Symbol('Aborted By Stop');
 
 /**
  * The symbol for aborted by unmounted.
@@ -78,11 +72,11 @@ type UseAsyncReturn<Ret> = {
   /**
    * Run the async function.
    */
-  load: RunAsync<Ret>;
+  load: () => Promise<Ret>;
   /**
    * Stop the async function.
    */
-  stop: () => void;
+  stop: (reason?: unknown) => void;
 };
 
 /**
@@ -126,37 +120,6 @@ function useAsync<Args, Ret>(
   const [refresh, setRefresh] = useState(0);
   const refreshRef = useRef(refresh);
 
-  // The load function to run the async function.
-  const load = useCallback<RunAsync<Ret>>((signal) => {
-    signal?.addEventListener('abort', () => {
-      const abortCtl = abortCtlRef.current;
-      abortCtl?.abort(signal.reason);
-    });
-
-    setRefresh((n) => (n + 1) % MAX_SAFE_INTEGER);
-
-    resolversRef.current = Promise.withResolvers();
-    return resolversRef.current.promise;
-  }, []);
-
-  // The stop function to stop the async function.
-  const stop = useCallback(() => {
-    const abortCtl = abortCtlRef.current;
-    abortCtl?.abort($abortedByStop);
-  }, []);
-
-  // Check if no need to rerun the async function.
-  const sameFn = fnRef.current === promiseFn;
-  const sameArgs = options.sampArgs?.(argsRef.current, args);
-  const sameRefresh = refreshRef.current === refresh;
-  const notFirstRun = pending !== undefined || !options.autoLoad;
-  const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
-
-  // Create the state object.
-  const state = { pending, result, error };
-  // Create the hook return.
-  const hookReturn = { state, load, stop };
-
   // ToDo: correct aborting when unmounted.
   // useEffect(
   //   () => () => {
@@ -164,6 +127,31 @@ function useAsync<Args, Ret>(
   //   },
   //   [],
   // );
+
+  // Create the hook return.
+  const hookReturn: UseAsyncReturn<Ret> = {
+    // The state of the async function.
+    state: { pending, result, error },
+    // The load function to run the async function.
+    load: useCallback<UseAsyncReturn<Ret>['load']>(() => {
+      setRefresh((n) => (n + 1) % MAX_SAFE_INTEGER);
+
+      resolversRef.current = Promise.withResolvers();
+      return resolversRef.current.promise;
+    }, []),
+    // The stop function to stop the async function.
+    stop: useCallback<UseAsyncReturn<Ret>['stop']>((reason) => {
+      const abortCtl = abortCtlRef.current;
+      abortCtl?.abort(reason);
+    }, []),
+  };
+
+  // Check if no need to rerun the async function.
+  const sameFn = fnRef.current === promiseFn;
+  const sameArgs = options.sampArgs?.(argsRef.current, args);
+  const sameRefresh = refreshRef.current === refresh;
+  const notFirstRun = pending !== undefined || !options.autoLoad;
+  const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
 
   // If no change, return the previous state.
   if (noChange) return hookReturn;
@@ -215,7 +203,6 @@ export {
   useAsync as default,
   $abortedByUnmounted,
   $abortedByRerender,
-  $abortedByStop,
   type UseAsyncFn,
   type UseAsyncOptions,
 };

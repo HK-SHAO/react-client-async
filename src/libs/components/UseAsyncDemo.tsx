@@ -15,6 +15,8 @@ const inspectorTheme: typeof chromeDark = {
   },
 };
 
+const abortedByStop = Symbol('Aborted By Stop');
+
 const fetchSome = async (
   { cntRef }: { cntRef: RefObject<number> },
   { signal }: { signal: AbortSignal },
@@ -35,7 +37,7 @@ export default function UseAsyncDemo() {
     });
   }, [task.load]);
 
-  const stop = useCallback(() => task.stop(), [task.stop]);
+  const stop = useCallback(() => task.stop(abortedByStop), [task.stop]);
 
   const { pending } = task.state;
 

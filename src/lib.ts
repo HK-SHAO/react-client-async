@@ -12,7 +12,6 @@ export {
 export {
   default as useAsync,
   $abortedByRerender,
-  $abortedByStop,
   $abortedByUnmounted,
   type UseAsyncFn,
   type UseAsyncOptions,
