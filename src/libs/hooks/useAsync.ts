@@ -121,15 +121,8 @@ function useAsync<Args, Ret>(
   const [refresh, setRefresh] = useState(0);
   const refreshRef = useRef(refresh);
 
-  // ToDo: correct aborting when unmounted.
-  // ToDo: React.StrictMode causes the task to be canceled by triggering an unmount first.
-  useEffect(
-    () => () => {
-      console.log('unmounted');
-      abortCtlRef.current?.abort($abortedByUnmounted);
-    },
-    [],
-  );
+  // Abort the async function when unmounted.
+  useEffect(() => () => abortCtlRef.current?.abort($abortedByUnmounted), []);
 
   // Create the hook return.
   const hookReturn: UseAsyncReturn<Ret> = {
@@ -154,9 +147,10 @@ function useAsync<Args, Ret>(
   const sameRefresh = refreshRef.current === refresh;
   const notFirstRun = pending !== undefined || !options.autoLoad;
   const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
+  const aborted = abortCtlRef.current?.signal.aborted;
 
-  // If no change, return the previous state.
-  if (noChange) return hookReturn;
+  // If no change and not aborted, return the hook return.
+  if (noChange && !aborted) return hookReturn;
 
   // Update the references.
   fnRef.current = promiseFn;
@@ -166,10 +160,9 @@ function useAsync<Args, Ret>(
   // Set the pending state.
   setPending(true);
 
+  // Create the abort controller and signal.
   const abortCtl = new AbortController();
   const signal = abortCtl.signal;
-  const awaitable = promiseFn(args, { signal });
-  const promise = Promise.resolve(awaitable);
 
   // Abort the previous async function.
   abortCtlRef.current?.abort($abortedByRerender);
@@ -178,7 +171,8 @@ function useAsync<Args, Ret>(
   // Get the current resolvers.
   const curResolvers = resolversRef.current;
 
-  promise
+  // Run the async function and get the promise.
+  Promise.try(promiseFn, args, { signal })
     // Set the result and clear the error.
     .then((result) => {
       setError(undefined);

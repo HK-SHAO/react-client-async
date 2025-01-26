@@ -30,7 +30,7 @@ export default function UseAsyncDemo() {
   const task = useAsync(fetchSome, { cntRef });
 
   const load = useCallback(async () => {
-    toast.promise(task.load(), {
+    toast.promise(task.load, {
       pending: 'Promise is pending',
       success: { render: ({ data }) => `Result: ${String(data)}` },
       error: { render: ({ data }) => `Error: ${String(data)}` },
