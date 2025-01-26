@@ -177,7 +177,7 @@ function useAsync<Args, Ret>(
   const curResolvers = resolversRef.current;
 
   // Run the async function and get the promise.
-  Promise.try(promiseFn, args, { signal })
+  Promise.resolve(promiseFn(args, { signal }))
     // Set the result and clear the error.
     .then((result) => {
       setError(undefined);
