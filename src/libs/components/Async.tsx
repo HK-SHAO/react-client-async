@@ -48,12 +48,12 @@ function Async<P>({
   type Fn = UseAsyncFn<P, ReactNode>;
 
   let fc: AsyncFC<P> = $fc;
-  let sampeArgs: propsAreEqual<P> | undefined;
+  let sameArgs: propsAreEqual<P> | undefined;
 
   // Check if the async function component is a memo component.
   if (isReactMemo<P>($fc)) {
     fc = $fc.type;
-    sampeArgs = $fc.compare;
+    sameArgs = $fc.compare;
   }
 
   // Create the async function.
@@ -64,7 +64,10 @@ function Async<P>({
   );
 
   // Create the options for the async function.
-  const options = { autoLoad: true, sampeArgs } satisfies UseAsyncOptions<P>;
+  const options = {
+    autoLoad: true,
+    sampArgs: sameArgs,
+  } satisfies UseAsyncOptions<P>;
 
   // Execute the async function and get the state.
   const { state } = useAsync(fn, args, options);
