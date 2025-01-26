@@ -1,9 +1,10 @@
+import '#styles/prose.css';
+
+import { useEffect } from 'react';
+
 import type { MDXComponents } from 'mdx/types';
 import Code from '#components/Code';
 import DemoPage from '#components/DemoPage.mdx';
-
-import '#styles/prose.css';
-import { useEffect } from 'react';
 
 const components: MDXComponents = { code: Code };
 

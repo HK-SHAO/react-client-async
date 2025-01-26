@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { $signal, Async, wrap } from 'react-client-async';
+import { $signal, wrap } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
 const Rec = wrap<{ n: number; seed: number }>(
@@ -30,7 +30,7 @@ export default function RecursiveAsyncDemo() {
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="w-[42em] text-xs [&>.grid]:place-items-center [&_*]:rounded-full">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] min-h-28 inner-bg-text-flash">
-          <Async $fc={Rec} n={52} seed={seed} />
+          <Rec n={52} seed={seed} />
         </div>
       </div>
       <button

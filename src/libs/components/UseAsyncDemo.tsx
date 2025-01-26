@@ -1,9 +1,9 @@
 import { type RefObject, useCallback, useRef } from 'react';
+
 import { useAsync } from 'react-client-async';
 import { ObjectInspector, chromeDark } from 'react-inspector';
-import delayWithSignal from '#utils/delayWithSignal';
-
 import { toast } from 'react-toastify';
+import delayWithSignal from '#utils/delayWithSignal';
 
 const inspectorTheme: typeof chromeDark = {
   ...chromeDark,

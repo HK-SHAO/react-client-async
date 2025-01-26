@@ -1,8 +1,9 @@
-import { useCallback, useRef, useState } from 'react';
-import { MAX_SAFE_INTEGER } from '../constants/basic';
-import type { propsAreEqual } from '../types/react';
-import type { Awaitable } from '../types/utils';
-import sameProps from '../utils/sameProps';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { MAX_SAFE_INTEGER } from '#constants/basic';
+import type { propsAreEqual } from '#types/react';
+import type { Awaitable } from '#types/utils';
+import sameProps from '#utils/sameProps';
 
 /**
  * The extras for the async function.
@@ -121,28 +122,29 @@ function useAsync<Args, Ret>(
   const refreshRef = useRef(refresh);
 
   // ToDo: correct aborting when unmounted.
-  // useEffect(
-  //   () => () => {
-  //     abortCtlRef.current?.abort($abortedByUnmounted);
-  //   },
-  //   [],
-  // );
+  // ToDo: React.StrictMode causes the task to be canceled by triggering an unmount first.
+  useEffect(
+    () => () => {
+      console.log('unmounted');
+      abortCtlRef.current?.abort($abortedByUnmounted);
+    },
+    [],
+  );
 
   // Create the hook return.
   const hookReturn: UseAsyncReturn<Ret> = {
     // The state of the async function.
     state: { pending, result, error },
     // The load function to run the async function.
-    load: useCallback<UseAsyncReturn<Ret>['load']>(() => {
+    load: useCallback(() => {
       setRefresh((n) => (n + 1) % MAX_SAFE_INTEGER);
 
       resolversRef.current = Promise.withResolvers();
       return resolversRef.current.promise;
     }, []),
     // The stop function to stop the async function.
-    stop: useCallback<UseAsyncReturn<Ret>['stop']>((reason) => {
-      const abortCtl = abortCtlRef.current;
-      abortCtl?.abort(reason);
+    stop: useCallback((reason) => {
+      abortCtlRef.current?.abort(reason);
     }, []),
   };
 
@@ -201,8 +203,8 @@ function useAsync<Args, Ret>(
 
 export {
   useAsync as default,
-  $abortedByUnmounted,
   $abortedByRerender,
+  $abortedByUnmounted,
   type UseAsyncFn,
   type UseAsyncOptions,
 };

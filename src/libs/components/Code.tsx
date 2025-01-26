@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
