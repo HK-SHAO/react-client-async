@@ -51,7 +51,7 @@ You can use the `Async` component to render an async component.
 
 ## 🎬 `Demo` of Recursive Async Component
 
-Easy to `wrap` a memoized recursive async component.
+Easy to `wrap` a recursive async component and memoize it.
 
 ```tsx
 const Rec = wrap<{ n: number }>(
