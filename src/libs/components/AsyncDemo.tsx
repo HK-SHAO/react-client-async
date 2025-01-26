@@ -1,11 +1,6 @@
 import { memo, useCallback, useMemo, useState } from 'react';
 
-import {
-  $signal,
-  Async,
-  type AsyncFC,
-  type FallbackFC,
-} from 'react-client-async';
+import { $signal, Async, type AsyncFC, type StateFC } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
 const DelayWithRandomError: AsyncFC<{
@@ -40,7 +35,7 @@ export default function AsyncDemo() {
     setCount((prev) => prev + 1);
   }, []);
 
-  const fallback = useCallback<FallbackFC>(
+  const fallback = useCallback<StateFC>(
     ({ state }) => (
       <button
         type="button"

@@ -50,26 +50,31 @@ const $abortedByRerender = Symbol('Aborted By Rerender');
 const $abortedByUnmounted = Symbol('Aborted By Unmounted');
 
 /**
+ * The state of the async function.
+ */
+type State<Ret> = {
+  /**
+   * If `true`, the async function is pending.
+   */
+  pending: boolean | undefined;
+  /**
+   * The result of the async function.
+   */
+  result: Ret | undefined;
+  /**
+   * The error of the async function.
+   */
+  error: unknown;
+};
+
+/**
  * Return type of the useAsync hook.
  */
 type UseAsyncReturn<Ret> = {
   /**
    * The pending state, result, and error.
    */
-  state: {
-    /**
-     * If `true`, the async function is pending.
-     */
-    pending: boolean | undefined;
-    /**
-     * The result of the async function.
-     */
-    result: Ret | undefined;
-    /**
-     * The error of the async function.
-     */
-    error: unknown;
-  };
+  state: State<Ret>;
   /**
    * Run the async function.
    */
@@ -199,6 +204,7 @@ export {
   useAsync as default,
   $abortedByRerender,
   $abortedByUnmounted,
+  type State,
   type UseAsyncFn,
   type UseAsyncOptions,
 };

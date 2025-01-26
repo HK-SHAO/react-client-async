@@ -2,6 +2,7 @@ import { type FC, type ReactNode, useCallback } from 'react';
 
 import {
   $abortedByUnmounted,
+  type State,
   type UseAsyncFn,
   type UseAsyncOptions,
   useAsync,
@@ -14,14 +15,10 @@ import isReactMemo from '#utils/isReactMemo';
  */
 const $signal = Symbol('Siganl for Async Function Component');
 
-type SignalSymbol = typeof $signal;
 type SignalObject = { [$signal]: AbortSignal };
-
 type AsyncFC<P> = InnerFC<P & SignalObject>;
-type State = ReturnType<typeof useAsync<unknown, ReactNode>>['state'];
-type WaitingFC = AsyncFC<{ state: State }>;
-type FallbackFC = AsyncFC<{ state: State }>;
-type AsyncProps<P> = Omit<P, SignalSymbol> & {
+type StateFC = AsyncFC<{ state: State<ReactNode> }>;
+type AsyncProps<P> = Omit<P, symbol> & {
   /**
    * The async function component.
    */
@@ -29,11 +26,11 @@ type AsyncProps<P> = Omit<P, SignalSymbol> & {
   /**
    * The waiting component.
    */
-  $waiting?: ReactNode | WaitingFC;
+  $waiting?: ReactNode | StateFC;
   /**
    * The fallback component.
    */
-  $fallback?: ReactNode | FallbackFC;
+  $fallback?: ReactNode | StateFC;
 };
 
 /**
@@ -45,8 +42,6 @@ function Async<P>({
   $fallback,
   ...props
 }: AsyncProps<P>): ReactNode {
-  type Fn = UseAsyncFn<P, ReactNode>;
-
   let fc: AsyncFC<P> = $fc;
   let sameArgs: propsAreEqual<P> | undefined;
 
@@ -58,7 +53,7 @@ function Async<P>({
 
   // Create the async function.
   const args = props as P;
-  const fn = useCallback<Fn>(
+  const fn = useCallback<UseAsyncFn<P, ReactNode>>(
     (props, { signal }) => fc({ ...props, [$signal]: signal }),
     [fc],
   );
@@ -113,8 +108,6 @@ export {
   $signal,
   type AsyncFC,
   type AsyncProps,
-  type FallbackFC,
-  type State,
-  type WaitingFC,
+  type StateFC,
   wrap,
 };
