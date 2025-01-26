@@ -50,6 +50,11 @@ const $abortedByRerender = Symbol('Aborted By Rerender');
 const $abortedByStop = Symbol('Aborted By Stop');
 
 /**
+ * The symbol for aborted by unmounted.
+ */
+const $abortedByUnmounted = Symbol('Aborted By Unmounted');
+
+/**
  * Return type of the useAsync hook.
  */
 type UseAsyncReturn<Ret> = {
@@ -152,6 +157,14 @@ function useAsync<Args, Ret>(
   // Create the hook return.
   const hookReturn = { state, load, stop };
 
+  // ToDo: correct aborting when unmounted.
+  // useEffect(
+  //   () => () => {
+  //     abortCtlRef.current?.abort($abortedByUnmounted);
+  //   },
+  //   [],
+  // );
+
   // If no change, return the previous state.
   if (noChange) return hookReturn;
 
@@ -200,6 +213,7 @@ function useAsync<Args, Ret>(
 
 export {
   useAsync as default,
+  $abortedByUnmounted,
   $abortedByRerender,
   $abortedByStop,
   type UseAsyncFn,

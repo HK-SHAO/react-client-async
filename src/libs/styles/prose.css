@@ -46,6 +46,7 @@ code::after {
   content: "";
 }
 
+.prose-pre,
 .prose pre {
   background: rgb(40, 44, 52);
   @apply text-sm;

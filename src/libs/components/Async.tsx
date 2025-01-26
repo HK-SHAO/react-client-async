@@ -1,6 +1,7 @@
-import { type ReactNode, memo, useCallback } from 'react';
+import { type FC, type ReactNode, useCallback } from 'react';
 
 import {
+  $abortedByUnmounted,
   type UseAsyncFn,
   type UseAsyncOptions,
   useAsync,
@@ -89,14 +90,17 @@ function Async<P>({
   }
 
   // No fallback, throw the error.
-  if (error) throw error;
+  if (error && error !== $abortedByUnmounted) throw error;
 
   // Renturn the rendered result.
   return result;
 }
 
-function create<P>(fc: AsyncFC<P>) {
-  return memo((props: P) => <Async $fc={fc} {...props} />);
+/**
+ * Wrap an async function component to a normal function component.
+ */
+function wrap<P>(fc: AsyncFC<P>): FC<P> {
+  return (props: P) => <Async $fc={fc} {...props} />;
 }
 
 export {
@@ -104,8 +108,8 @@ export {
   $signal,
   type AsyncFC,
   type AsyncProps,
-  create,
   type FallbackFC,
   type State,
   type WaitingFC,
+  wrap,
 };

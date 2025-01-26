@@ -1,12 +1,12 @@
 import { type RefObject, useCallback, useRef } from 'react';
 import { type UseAsyncFn, useAsync } from 'react-client-async';
-import { ObjectInspector, chromeLight } from 'react-inspector';
+import { ObjectInspector, chromeDark } from 'react-inspector';
 import delayWithSignal from '#utils/delayWithSignal';
 
 import { toast } from 'react-toastify';
 
-const inspectorTheme: typeof chromeLight = {
-  ...chromeLight,
+const inspectorTheme: typeof chromeDark = {
+  ...chromeDark,
   ...{
     BASE_BACKGROUND_COLOR: 'transparent',
     BASE_FONT_SIZE: 'var(--text-sm)',
@@ -46,20 +46,18 @@ export default function UseAsyncDemo() {
   const { pending } = task.state;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-2 bg-gray-950/[5%] dark:bg-gray-50/[5%] py-4 p-2 rounded-lg">
-      <div className="dark:invert">
-        <ObjectInspector
-          data={task}
-          expandLevel={3}
-          theme={inspectorTheme as unknown as 'chromeLight'}
-        />
-      </div>
+    <div className="flex flex-col justify-center items-center gap-2 py-4 p-2 rounded-lg prose-pre">
+      <ObjectInspector
+        data={task}
+        expandLevel={3}
+        theme={inspectorTheme as unknown as 'chromeDark'}
+      />
 
       <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
       <div className="flex gap-4">
         <button
           type="button"
-          className="btn btn-blue"
+          className="text-base btn btn-blue"
           onClick={load}
           disabled={pending}
         >
@@ -67,7 +65,7 @@ export default function UseAsyncDemo() {
         </button>
         <button
           type="button"
-          className="btn btn-red"
+          className="text-base btn btn-red"
           onClick={stop}
           disabled={!pending}
         >

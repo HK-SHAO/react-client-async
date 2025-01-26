@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 
-import { $signal, Async, create } from 'react-client-async';
+import { $signal, Async, wrap } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
-const Rec = create<{ n: number; seed: number }>(
+const Rec = wrap<{ n: number; seed: number }>(
   async ({ [$signal]: signal, n, seed }) =>
     n <= 0 ? (
       <>
@@ -19,10 +19,13 @@ const Rec = create<{ n: number; seed: number }>(
     ),
 );
 
+Rec.displayName = 'Rec';
+
 export default function RecursiveAsyncDemo() {
   const [seed, setSeed] = useState(0);
 
   const reload = useCallback(() => setSeed((prev) => prev + 1), []);
+
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="w-[42em] text-xs [&>.grid]:place-items-center [&_*]:rounded-full">
