@@ -98,6 +98,8 @@ function Async<P>({
 
 /**
  * Wrap an async function component to a normal function component.
+ * @param fc The async function component.
+ * @returns The normal function component.
  */
 function wrap<P>(fc: AsyncFC<P>): FC<P> {
   return (props: P) => <Async $fc={fc} {...props} />;

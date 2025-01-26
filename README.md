@@ -51,10 +51,10 @@ You can use the `Async` component to render an async component.
 
 ## 🎬 `Demo` of Recursive Async Component
 
-Easy to `create` a memoized recursive async component.
+Easy to `wrap` a memoized recursive async component.
 
 ```tsx
-const Rec = create<{ n: number }>(
+const Rec = wrap<{ n: number }>(
   async ({ [$signal]: signal, n }) =>
     // break the recursion
     (n <= 0) ? 0 : (

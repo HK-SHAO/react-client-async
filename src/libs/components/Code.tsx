@@ -11,13 +11,15 @@ const regExpLanguage = /language-(\w+)/;
 
 const customStyle: CSSProperties = { display: 'contents' };
 
-export type CodeProps = {
+export default function Code({
+  className,
+  children,
+  ...rest
+}: {
   className?: string;
   children: string;
   [key: string]: unknown;
-};
-
-export default function Code({ className, children, ...rest }: CodeProps) {
+}) {
   const match = className ? regExpLanguage.exec(className) : null;
   return match ? (
     <SyntaxHighlighter

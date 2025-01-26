@@ -1,19 +1,25 @@
 import type { propsAreEqual } from '../types/react';
 
-export const sameProps: propsAreEqual = (prevProps, nextProps) => {
-  if (prevProps === nextProps) return true;
+/**
+ * Check if the props are the same.
+ * @param prev The previous props
+ * @param next The next props
+ * @returns The boolean result
+ */
+export const sameProps: propsAreEqual = (prev, next) => {
+  if (prev === next) return true;
 
   if (
-    typeof prevProps !== 'object' ||
-    typeof nextProps !== 'object' ||
-    prevProps === null ||
-    nextProps === null
+    typeof prev !== 'object' ||
+    typeof next !== 'object' ||
+    prev === null ||
+    next === null
   ) {
     return false;
   }
 
-  const prevKeys = Object.keys(prevProps);
-  const nextKeys = Object.keys(nextProps);
+  const prevKeys = Object.keys(prev);
+  const nextKeys = Object.keys(next);
 
   if (prevKeys.length !== nextKeys.length) {
     return false;
@@ -21,7 +27,7 @@ export const sameProps: propsAreEqual = (prevProps, nextProps) => {
 
   for (const key of prevKeys) {
     // @ts-expect-error
-    if (prevProps[key] !== nextProps[key]) {
+    if (prev[key] !== next[key]) {
       return false;
     }
   }

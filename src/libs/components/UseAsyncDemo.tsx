@@ -1,5 +1,5 @@
 import { type RefObject, useCallback, useRef } from 'react';
-import { type UseAsyncFn, useAsync } from 'react-client-async';
+import { useAsync } from 'react-client-async';
 import { ObjectInspector, chromeDark } from 'react-inspector';
 import delayWithSignal from '#utils/delayWithSignal';
 
@@ -15,8 +15,10 @@ const inspectorTheme: typeof chromeDark = {
   },
 };
 
-type FetchSome = UseAsyncFn<{ cntRef: RefObject<number> }, string>;
-const fetchSome: FetchSome = async ({ cntRef }, { signal }) => {
+const fetchSome = async (
+  { cntRef }: { cntRef: RefObject<number> },
+  { signal }: { signal: AbortSignal },
+) => {
   await delayWithSignal(1000, signal);
   return `${++cntRef.current} times`;
 };
@@ -28,16 +30,8 @@ export default function UseAsyncDemo() {
   const load = useCallback(async () => {
     toast.promise(task.load(), {
       pending: 'Promise is pending',
-      success: {
-        render({ data }) {
-          return `Result: ${String(data)}`;
-        },
-      },
-      error: {
-        render({ data }) {
-          return `Error: ${String(data)}`;
-        },
-      },
+      success: { render: ({ data }) => `Result: ${String(data)}` },
+      error: { render: ({ data }) => `Error: ${String(data)}` },
     });
   }, [task.load]);
 

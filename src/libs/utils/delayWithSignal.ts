@@ -1,3 +1,9 @@
+/**
+ * Delay with signal
+ * @param ms The milliseconds to delay
+ * @param signal The abort signal
+ * @returns The promise to delay
+ */
 export default function delayWithSignal(
   ms: number,
   signal: AbortSignal,

@@ -90,7 +90,7 @@ type UseAsyncReturn<Ret> = {
  * @param promiseFn The async function to run.
  * @param args Arguments for the async function.
  * @param options Options for using the async function.
- * @returns The pending state, result, and error.
+ * @returns The task state and control.
  */
 function useAsync<Args, Ret>(
   /**
