@@ -152,10 +152,10 @@ function useAsync<Args, Ret>(
   const sameRefresh = refreshRef.current === refresh;
   const notFirstRun = pending !== undefined || !options.autoLoad;
   const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
-  const aborted = abortCtlRef.current?.signal.aborted;
+  const reason = abortCtlRef.current?.signal.reason;
 
   // If no change and not aborted, return the hook return.
-  if (noChange && !aborted) return hookReturn;
+  if (noChange && reason !== $abortedByUnmounted) return hookReturn;
 
   // Update the references.
   fnRef.current = promiseFn;
