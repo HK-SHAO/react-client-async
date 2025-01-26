@@ -26,7 +26,7 @@ h2 {
 h2 > a {
   @apply font-bold text-inherit;
   @apply transition-all duration-150 ease-out;
-  @apply origin-left hover:scale-110;
+  @apply origin-left hover:scale-105;
   @apply hover:no-underline;
 }
 

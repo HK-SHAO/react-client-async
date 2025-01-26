@@ -3,7 +3,7 @@
 :root {
   font-size: min(2.5vw, 1em);
   @apply bg-white text-black;
-  @apply dark:bg-black/90;
+  @apply dark:bg-black;
 }
 
 @keyframes bg-text-flash {
