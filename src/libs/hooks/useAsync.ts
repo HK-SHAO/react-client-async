@@ -27,11 +27,11 @@ type UseAsyncFn<Args = unknown, Ret = unknown> = (
 
 type UseAsyncObject<P> = {
   /**
-   * If `true`, the async function will run automatically.
+   * If `true`, the async function will run automatically after the first render. Default is `true`.
    */
   autoLoad: boolean;
   /**
-   * Determine the arguments are the same.
+   * Determine the arguments are the same. Default is `sameProps`.
    */
   sameArgs: propsAreEqual<P>;
 };
@@ -106,7 +106,7 @@ function useAsync<Args, Ret>(
   options: UseAsyncOptions<Args> = {},
 ): UseAsyncReturn<Ret> {
   // Set default options
-  options.autoLoad ??= false;
+  options.autoLoad ??= true;
   options.sameArgs ??= sameProps;
 
   const [pending, setPending] = useState<boolean>();
@@ -118,7 +118,7 @@ function useAsync<Args, Ret>(
   const argsRef = useRef(args);
 
   // The resolvers for the async function.
-  type Resolvers = ReturnType<typeof Promise.withResolvers<Ret>>;
+  type Resolvers = PromiseWithResolvers<Ret>;
   const resolversRef = useRef<Resolvers>(null);
 
   // The refresh state to force rerender.

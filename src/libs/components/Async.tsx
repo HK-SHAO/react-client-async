@@ -4,7 +4,6 @@ import {
   $abortedByUnmounted,
   type State,
   type UseAsyncFn,
-  type UseAsyncOptions,
   useAsync,
 } from 'react-client-async';
 import type { InnerFC, propsAreEqual } from '#types/react';
@@ -58,14 +57,8 @@ function Async<P>({
     [fc],
   );
 
-  // Create the options for the async function.
-  const options = {
-    autoLoad: true,
-    sameArgs,
-  } satisfies UseAsyncOptions<P>;
-
   // Execute the async function and get the state.
-  const { state } = useAsync(fn, args, options);
+  const { state } = useAsync(fn, args, { sameArgs });
   const { pending, result, error } = state;
 
   // Render pending state.

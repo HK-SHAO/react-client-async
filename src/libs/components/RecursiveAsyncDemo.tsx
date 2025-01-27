@@ -1,9 +1,9 @@
-import { useCallback, useState } from 'react';
+import { type FC, useCallback, useState } from 'react';
 
 import { $signal, wrap } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
-const Rec = wrap<{ n: number; seed: number }>(
+const Rec: FC<{ n: number; seed: number }> = wrap(
   async ({ [$signal]: signal, n, seed }) =>
     n <= 0 ? (
       <>
