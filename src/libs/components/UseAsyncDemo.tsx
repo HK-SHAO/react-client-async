@@ -42,7 +42,10 @@ export default function UseAsyncDemo() {
   const { pending } = task.state;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-2 py-4 p-2 rounded-lg prose-pre">
+    <div
+      className="flex flex-col justify-center items-center gap-2 py-4 p-2 rounded-lg prose-pre"
+      style={{ textShadow: 'rgba(0, 0, 0, 0.3) 0px 1px' }}
+    >
       <ObjectInspector
         data={task}
         expandLevel={3}
