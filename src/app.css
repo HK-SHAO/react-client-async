@@ -6,7 +6,7 @@
   @apply dark:bg-black;
 }
 
-@keyframes bg-text-flash {
+@keyframes bg-flash {
   from {
     background-color: oklch(0.809 0.105 251.813);
     color: black;
@@ -18,6 +18,6 @@
   }
 }
 
-.inner-bg-text-flash * {
-  animation: bg-text-flash 0.5s ease-out;
+.inner-bg-flash * {
+  animation: bg-flash 0.5s ease-out;
 }

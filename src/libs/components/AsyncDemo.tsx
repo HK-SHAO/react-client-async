@@ -3,16 +3,13 @@ import { memo, useCallback, useMemo, useState } from 'react';
 import { $signal, Async, type AsyncFC, type StateFC } from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
-const DelayWithRandomError: AsyncFC<{
+const DelayWithError: AsyncFC<{
   count: number;
   addCount: () => void;
 }> = memo(async ({ [$signal]: signal, count, addCount }) => {
   await delayWithSignal(1000, signal);
 
-  // Randomly throw an error.
-  if (Math.random() < 0.5) {
-    throw new Error('Random Error');
-  }
+  if (count % 2 !== 0) throw new Error('Error when count is odd');
 
   return (
     <button
@@ -20,7 +17,7 @@ const DelayWithRandomError: AsyncFC<{
       className="flex justify-center items-center ml-2 btn btn-blue"
       onClick={addCount}
     >
-      Async Component
+      Async component has loaded
       <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
         {count}
       </span>
@@ -70,7 +67,7 @@ export default function AsyncDemo() {
   return (
     <div className="flex flex-col items-center gap-2">
       <Async
-        $fc={DelayWithRandomError}
+        $fc={DelayWithError}
         $waiting={waiting}
         $fallback={fallback}
         // The props for the async component.
