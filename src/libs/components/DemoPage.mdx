@@ -1,10 +1,11 @@
-import AsyncDemo from './AsyncDemo';
-import RecursiveAsyncDemo from './RecursiveAsyncDemo';
-import UseAsyncDemo from './UseAsyncDemo';
-import Title from "./Title";
-import Card from "./Card";
+import AsyncDemo from '#components/AsyncDemo';
+import RecursiveAsyncDemo from '#components/RecursiveAsyncDemo';
+import UseAsyncDemo from '#components/UseAsyncDemo';
+import Title from "#components/Title";
+import Card from "#components/Card";
 
 import { toast } from 'react-toastify';
+import { RecursiveDemoTag } from '#constants/tag';
 
 <div className='w-full text-center text-5xl mt-10'>⚛️⏳</div>
 
@@ -71,7 +72,7 @@ You can use the `Async` to render an async component.
 
 <Card className='mt-10 pb-8'>
 
-## <a href='#RecursiveDemo' id="RecursiveDemo">🎬 `Demo` of Recursive Async Component</a>
+## <a href={`#${RecursiveDemoTag}`} id={RecursiveDemoTag}>🎬 `Demo` of Recursive Async Component</a>
 
 Easy to `wrap` a recursive async component and memoize it.
 

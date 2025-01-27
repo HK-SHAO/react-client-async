@@ -63,12 +63,13 @@ function Async<P>({
 
   // Render pending state.
   if (pending) {
+    if ($waiting === undefined) return result;
     if (typeof $waiting !== 'function') return $waiting;
     return <Async $fc={$waiting} state={state} />;
   }
 
   // Render error state.
-  if (error && $fallback) {
+  if (error && $fallback !== undefined) {
     if (typeof $fallback !== 'function') return $fallback;
     return (
       <Async

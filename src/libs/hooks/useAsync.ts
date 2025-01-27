@@ -174,6 +174,12 @@ function useAsync<Args, Ret>(
   // Get the current resolvers.
   const curResolvers = resolversRef.current;
 
+  /**
+   * ToDo: Move `promiseFn` to before the early return
+   * or wrap it in `useEffect` so that the Async component
+   * directly supports hooks like `useState`.
+   */
+
   // Run the async function and get the promise.
   Promise.resolve(promiseFn(args, { signal }))
     // Set the result and clear the error.
