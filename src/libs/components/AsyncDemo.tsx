@@ -21,7 +21,7 @@ const DelayWithRandomError: AsyncFC<{
       onClick={addCount}
     >
       Async Component
-      <span className="inline bg-black/30 ml-2 px-4 py-0.5 rounded-full text-sm">
+      <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
         {count}
       </span>
     </button>
@@ -43,7 +43,7 @@ export default function AsyncDemo() {
         onClick={addCount}
       >
         {state.error instanceof Error ? state.error.message : 'Unknown Error'}
-        <span className="inline bg-black/30 ml-2 px-4 py-0.5 rounded-full text-sm">
+        <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
           {count}
         </span>
       </button>
@@ -59,7 +59,7 @@ export default function AsyncDemo() {
         onClick={addCount}
       >
         Loading...
-        <span className="inline bg-black/30 ml-2 px-4 py-0.5 rounded-full text-sm">
+        <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
           {count}
         </span>
       </button>

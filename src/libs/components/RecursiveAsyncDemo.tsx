@@ -39,7 +39,7 @@ export default function RecursiveAsyncDemo() {
         onClick={reload}
       >
         👆 Reload
-        <span className="inline bg-black/30 ml-2 px-4 py-0.5 rounded-full text-sm">
+        <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
           {seed}
         </span>
       </button>

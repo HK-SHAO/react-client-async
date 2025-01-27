@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { MAX_SAFE_INTEGER } from '#constants/basic';
 import type { propsAreEqual } from '#types/react';
 import type { Awaitable } from '#types/utils';
 import sameProps from '#utils/sameProps';
@@ -123,7 +122,7 @@ function useAsync<Args, Ret>(
   const resolversRef = useRef<Resolvers>(null);
 
   // The refresh state to force rerender.
-  const [refresh, setRefresh] = useState(0);
+  const [refresh, setRefresh] = useState(Symbol());
   const refreshRef = useRef(refresh);
 
   // Abort the async function when unmounted.
@@ -135,8 +134,7 @@ function useAsync<Args, Ret>(
     state: { pending, result, error },
     // The load function to run the async function.
     load: useCallback(() => {
-      setRefresh((n) => (n + 1) % MAX_SAFE_INTEGER);
-
+      setRefresh(() => Symbol());
       resolversRef.current = Promise.withResolvers();
       return resolversRef.current.promise;
     }, []),
