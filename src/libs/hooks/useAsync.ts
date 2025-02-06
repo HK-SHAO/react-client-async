@@ -176,8 +176,7 @@ function useAsync<Args, Ret>(
 
   /**
    * ToDo: Move `promiseFn` to before the early return
-   * or wrap it in `useEffect` so that the Async component
-   * directly supports hooks like `useState`.
+   * so that the Async component directly supports hooks like `useState`.
    */
 
   // Run the async function and get the promise.

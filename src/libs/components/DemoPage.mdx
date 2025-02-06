@@ -1,16 +1,23 @@
 import RecursiveAsyncDemo from '#components/RecursiveAsyncDemo';
-import LatestVersion from "#components/LatestVersion";
 import UseAsyncDemo from '#components/UseAsyncDemo';
 import AsyncDemo from '#components/AsyncDemo';
+import LatestVersion from './LatestVersion';
 import Title from "#components/Title";
 import Card from "#components/Card";
 
 import { toast } from 'react-toastify';
 
-<div className='w-full grid place-items-center mt-10'><LatestVersion/></div>
-<div className='w-full text-center text-5xl mt-6'>⚛️⏳</div>
+<div className='w-full flex justify-center -mb-6 mt-10'>
+  <div className='w-fit text-5xl relative hover:rotate-180 transition-transform select-none aspect-square grid place-items-center'>⚛️⏳</div>
+</div>
 
 # <Title/>
+
+<div className='w-full flex justify-center -mt-4'>
+<div className="place-items-center grid bg-pink-600 dark:bg-pink-800 rounded-md w-fit font-bold font-stretch-130% text-sm text-white hover:shadow-lg transition-shadow dark:hover:bg-pink-700 hover:bg-pink-500">
+  <LatestVersion />
+</div>
+</div>
 
 <Card className='pb-4 mt-10'>
 
