@@ -25,14 +25,14 @@ export default function UseAsyncMemoDemo() {
     { autoLoad: false },
   );
 
-  const newResult =
+  const res =
     result && typeof result === 'object'
       ? Object.fromEntries(
           Object.entries(result).filter(([key]) => whiteListSet.has(key)),
         )
       : result;
 
-  const data = { result: newResult, pending, error };
+  const data = { result: res, pending, error };
 
   return (
     <>
@@ -41,7 +41,11 @@ export default function UseAsyncMemoDemo() {
         style={{ textShadow: 'rgba(0, 0, 0, 0.3) 0px 1px' }}
       >
         <div className="w-full">
-          <ObjectInspector data={data} expandLevel={3} theme={inspectorTheme} />
+          <ObjectInspector
+            data={data}
+            expandLevel={res ? 3 : 0}
+            theme={inspectorTheme}
+          />
         </div>
 
         <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />

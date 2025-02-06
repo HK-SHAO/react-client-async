@@ -67,6 +67,31 @@ console.log(useAsync(promiseFn, args, options));
 
 </Card>
 
+
+<Card className='mt-10 pb-8'>
+
+## <a href='#useAsyncMemo' id="useAsyncMemo">✅ `useAsyncMemo` Hook</a>
+
+Use the `useAsyncMemo` hook to create a memoized async task.
+
+```tsx
+const {
+  state: { result, pending, error },
+  load, stop
+} = useAsyncMemo(
+  async ({ signal }) =>
+    fetch("/package.json", { signal })
+      .then((res) => res.json()),
+  [/* Function Dependencies */],
+  { autoLoad: false },
+);
+```
+
+<UseAsyncMemoDemo/>
+
+</Card>
+
+
 <Card className='mt-10 pb-8'>
 
 ## <a href='#Async' id="Async">✅ `Async` Component</a>
@@ -107,30 +132,6 @@ const Rec: FC<{ n: number }> = wrap(
 ```
 
 <RecursiveAsyncDemo />
-
-</Card>
-
-
-<Card className='mt-10 pb-8'>
-
-## <a href='#useAsyncMemo' id="useAsyncMemo">✅ `useAsyncMemo` Hook</a>
-
-Use the `useAsyncMemo` hook to create a memoized async task.
-
-```tsx
-const {
-  state: { result, pending, error },
-  load, stop
-} = useAsyncMemo(
-  async ({ signal }) =>
-    fetch("/package.json", { signal })
-      .then((res) => res.json()),
-  [/* Function Dependencies */],
-  { autoLoad: false },
-);
-```
-
-<UseAsyncMemoDemo/>
 
 </Card>
 
