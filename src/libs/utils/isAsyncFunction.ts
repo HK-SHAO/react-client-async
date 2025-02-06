@@ -1,4 +1,4 @@
-import { AsyncFunction } from '../constants/basic';
+import { AsyncFunction } from '#constants/basic';
 
 /**
  * Check if the function is an async function.

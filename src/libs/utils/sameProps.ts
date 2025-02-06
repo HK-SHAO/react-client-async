@@ -1,4 +1,4 @@
-import type { propsAreEqual } from '../types/react';
+import type { propsAreEqual } from '#types/react';
 
 /**
  * Check if the props are the same.

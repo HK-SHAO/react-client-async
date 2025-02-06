@@ -1,4 +1,4 @@
-import type { MemoComponent } from '../types/react';
+import type { MemoComponent } from '#types/react';
 
 /**
  * Check if the value is a React memo component.

@@ -32,7 +32,7 @@ npm i react-client-async
 You can use the `useAsync` hook to create a task.
 
 ```tsx
-console.log(useAsync(fn, args, options));
+console.log(useAsync(promiseFn, args, options));
 ```
 
 

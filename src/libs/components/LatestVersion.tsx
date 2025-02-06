@@ -1,7 +1,10 @@
 import { useCallback } from 'react';
 import { useAsyncMemo } from '#src/lib';
 
-import delayWithSignal from '../utils/delayWithSignal';
+import packageJsonUrl from '#constants/packageJsonUrl';
+import delayWithSignal from '#utils/delayWithSignal';
+
+type PackageJson = typeof import('#src/../package.json');
 
 export default function LatestVersion() {
   const {
@@ -11,8 +14,9 @@ export default function LatestVersion() {
   } = useAsyncMemo(
     async ({ signal }) => {
       const [ret] = await Promise.all([
-        // ToDo: Dynamic import with signal
-        import('#constants/version').then((m) => m.default),
+        fetch(packageJsonUrl, { signal })
+          .then((res) => res.json())
+          .then((data: PackageJson) => data.version),
         // Avoid too fast loading
         delayWithSignal(400, signal),
       ]);

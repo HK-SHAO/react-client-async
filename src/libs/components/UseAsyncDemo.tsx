@@ -1,19 +1,10 @@
 import { type RefObject, useCallback, useRef } from 'react';
 
 import { useAsync } from 'react-client-async';
-import { ObjectInspector, chromeDark } from 'react-inspector';
+import { ObjectInspector } from 'react-inspector';
 import { toast } from 'react-toastify';
+import inspectorTheme from '#constants/inspectorTheme';
 import delayWithSignal from '#utils/delayWithSignal';
-
-const inspectorTheme: typeof chromeDark = {
-  ...chromeDark,
-  ...{
-    BASE_BACKGROUND_COLOR: 'transparent',
-    BASE_FONT_SIZE: 'var(--text-sm)',
-    ARROW_FONT_SIZE: 'var(--text-sm)' as unknown as number,
-    TREENODE_FONT_SIZE: 'var(--text-sm)',
-  },
-};
 
 const abortedByStop = Symbol('Aborted By Stop');
 
@@ -46,11 +37,7 @@ export default function UseAsyncDemo() {
       className="flex flex-col justify-center items-center gap-2 py-4 p-2 rounded-md prose-pre"
       style={{ textShadow: 'rgba(0, 0, 0, 0.3) 0px 1px' }}
     >
-      <ObjectInspector
-        data={task}
-        expandLevel={3}
-        theme={inspectorTheme as unknown as 'chromeDark'}
-      />
+      <ObjectInspector data={task} expandLevel={3} theme={inspectorTheme} />
 
       <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
       <div className="flex gap-4 w-[24em]">

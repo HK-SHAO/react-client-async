@@ -1,6 +1,6 @@
 {
   "name": "react-client-async",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "dist/lib.js",
   "module": "dist/lib.js",
   "files": ["dist/", "README.md", "LICENSE"],
@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/HK-SHAO/react-client-async.git"
   },
-  "description": "React tools for async rendering in client side.",
+  "description": "React tools for async rendering in client side! 🚀",
   "readme": "README.md",
   "keywords": [
     "react",

@@ -1,3 +1,3 @@
-import { version } from '../../../package.json';
+import { version } from '#src/../package.json';
 
 export default version;
