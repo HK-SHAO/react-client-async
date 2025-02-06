@@ -12,13 +12,14 @@
   <a href="https://www.npmjs.com/package/react-client-async" target="_blank" rel="noreferrer">📦 Package</a>
 </p>
 
-## 👋 Introduction
 
+## 👋 Introduction
 
 This package helps you use async function **<u>without</u>** the need to migrate to `⚛️ React 19` and server-side rendering! 
 
 - ✨ Supports utility hooks to create and render async tasks.
 - ✨ Supports `AbortSignal` and automatic abort on re-render.
+
 
 ## 🚀 Install
 
@@ -36,6 +37,24 @@ console.log(useAsync(promiseFn, args, options));
 ```
 
 
+## ✅ `useAsyncMemo` Hook
+
+Use the `useAsyncMemo` hook to create a memoized async task.
+
+```tsx
+const {
+  state: { result, pending, error },
+  load, stop
+} = useAsyncMemo(
+  async ({ signal }) =>
+    fetch("/package.json", { signal })
+      .then((res) => res.json()),
+  [/* Function Dependencies */],
+  { autoLoad: false },
+);
+```
+
+
 ## ✅ `Async` Component
 
 You can use the `Async` component to render an async component.
@@ -49,7 +68,8 @@ You can use the `Async` component to render an async component.
 />
 ```
 
-## 🎬 `Demo` of Recursive Async Component
+
+## 🎬 Recursive Async Component Demo
 
 Easy to `wrap` a recursive async component and memoize it.
 
@@ -66,6 +86,7 @@ const Rec: FC<{ n: number }> = wrap(
     )
 );
 ```
+
 
 ## ⏳ What is Next?
 
