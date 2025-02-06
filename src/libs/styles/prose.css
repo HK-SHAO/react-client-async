@@ -28,6 +28,7 @@ h2 > a {
   @apply transition-all duration-150 ease-out;
   @apply origin-left hover:scale-105;
   @apply hover:no-underline;
+  @apply flex items-center gap-2;
 }
 
 code {
