@@ -19,7 +19,7 @@ export default function LatestVersion() {
   return (
     <>
       <div className="place-items-center grid bg-blue-600 dark:bg-blue-800 px-2 rounded-md font-bold font-stretch-120% text-white">
-        {pending ? 'Checking...' : error ? 'Error' : `v${version}`}
+        {pending ? 'loading' : error ? 'latest' : `v${version}`}
       </div>
     </>
   );

@@ -37,33 +37,45 @@ export default function RecursiveAsyncDemo() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-4">
-      <div className="flex gap-4 mb-2">
+      <div className="flex gap-4 mb-2 w-full">
         <button
           type="button"
-          className="flex justify-center items-center btn btn-blue"
+          className="flex flex-1 justify-center items-center btn btn-blue"
           onClick={reload}
         >
-          🎨 Reload
-          <span className="inline bg-black/20 ml-2 px-4 py-0.5 rounded-full text-sm">
-            {seed}
-          </span>
-        </button>
-
-        <button
-          type="button"
-          className="flex justify-center items-center btn btn-red"
-          onClick={refresh}
-        >
           <svg
-            xmlns="http://www.w3.org/2000/svg"
             width="1em"
             height="1em"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="0.15em"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className="m-1"
+          >
+            <title>reload</title>
+            <rect width="16" height="6" x="2" y="2" rx="2" />
+            <path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+            <rect width="4" height="6" x="8" y="16" rx="1" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          className="flex flex-1 justify-center items-center btn btn-red"
+          onClick={refresh}
+        >
+          <svg
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.15em"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="m-1"
           >
             <title>refresh</title>
             <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />

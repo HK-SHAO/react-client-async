@@ -14,7 +14,7 @@ const DelayWithError: AsyncFC<{
   return (
     <button
       type="button"
-      className="flex justify-center items-center ml-2 btn btn-blue"
+      className="flex justify-center items-center w-full btn btn-blue"
       onClick={addCount}
     >
       Async component has loaded
@@ -36,7 +36,7 @@ export default function AsyncDemo() {
     ({ state }) => (
       <button
         type="button"
-        className="flex justify-center items-center ml-2 btn btn-red"
+        className="flex justify-center items-center w-full btn btn-red"
         onClick={addCount}
       >
         {state.error instanceof Error ? state.error.message : 'Unknown Error'}
@@ -52,7 +52,7 @@ export default function AsyncDemo() {
     () => (
       <button
         type="button"
-        className="flex justify-center items-center ml-2 btn btn-gray"
+        className="flex justify-center items-center w-full btn btn-gray"
         onClick={addCount}
       >
         Loading...

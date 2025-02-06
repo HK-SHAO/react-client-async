@@ -53,10 +53,10 @@ export default function UseAsyncDemo() {
       />
 
       <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
-      <div className="flex gap-4">
+      <div className="flex gap-4 w-[24em]">
         <button
           type="button"
-          className="text-base btn btn-blue"
+          className="flex-1 text-base btn btn-blue"
           onClick={load}
           disabled={pending}
         >
@@ -64,7 +64,7 @@ export default function UseAsyncDemo() {
         </button>
         <button
           type="button"
-          className="text-base btn btn-red"
+          className="flex-1 text-base btn btn-red"
           onClick={stop}
           disabled={!pending}
         >
