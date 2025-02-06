@@ -5,11 +5,11 @@
 </h1>
 
 <p align="center">
-  <a href="https://shao.fun/react-client-async/" target="_blank">🎬 Demo</a>
+  <a href="https://shao.fun/react-client-async/" target="_blank" rel="noreferrer">🎬 Demo</a>
   <span> · </span>
-  <a href="https://github.com/HK-SHAO/react-client-async" target="_blank">🌟 GitHub</a>
+  <a href="https://github.com/HK-SHAO/react-client-async" target="_blank" rel="noreferrer">🌟 GitHub</a>
   <span> · </span>
-  <a href="https://www.npmjs.com/package/react-client-async" target="_blank">📦 Package</a>
+  <a href="https://www.npmjs.com/package/react-client-async" target="_blank" rel="noreferrer">📦 Package</a>
 </p>
 
 ## 👋 Introduction

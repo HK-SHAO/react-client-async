@@ -25,3 +25,29 @@
 .inner-bg-flash * {
   animation: bg-flash 0.5s ease-out;
 }
+
+@property --hue-shift {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    --hue-shift: 360;
+  }
+
+  100% {
+    --hue-shift: 0;
+  }
+}
+
+.gradient-bg {
+  background-image: linear-gradient(
+    to right,
+    oklch(0.623 0.214 calc(259.815 + var(--hue-shift))),
+    oklch(0.704 0.214 calc(182.503 + var(--hue-shift))),
+    oklch(0.656 0.214 calc(354.308 + var(--hue-shift)))
+  );
+  animation: gradientAnimation 5s linear infinite;
+}
