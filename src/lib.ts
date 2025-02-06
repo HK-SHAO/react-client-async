@@ -13,5 +13,8 @@ export {
   $abortedByUnmounted,
   type State,
   type UseAsyncFn,
+  type UseAsyncFnExtras,
   type UseAsyncOptions,
 } from '#hooks/useAsync';
+
+export { default as useAsyncMemo } from '#hooks/useAsyncMemo';

@@ -210,5 +210,6 @@ export {
   $abortedByUnmounted,
   type State,
   type UseAsyncFn,
+  type UseAsyncFnExtras,
   type UseAsyncOptions,
 };
