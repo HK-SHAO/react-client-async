@@ -1,0 +1,70 @@
+{
+  "name": "react-client-async",
+  "version": "1.3.4",
+  "main": "dist/lib.js",
+  "module": "dist/lib.js",
+  "files": ["dist/", "README.md", "LICENSE"],
+  "types": "dist/lib.d.ts",
+  "author": {
+    "name": "HK-SHAO",
+    "email": "hk-shao@outlook.com"
+  },
+  "homepage": "https://shao.fun/react-client-async",
+  "bugs": "https://github.com/HK-SHAO/react-client-async/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HK-SHAO/react-client-async.git"
+  },
+  "description": "React tools for async rendering in client side! 🚀",
+  "readme": "README.md",
+  "keywords": [
+    "react",
+    "client",
+    "async",
+    "hooks",
+    "promise",
+    "recursion",
+    "componets",
+    "awaitable"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build:app": "rsbuild build",
+    "build:app:deploy": "bun run build:app && bun run push:pages",
+    "build:lib": "bun run scripts/build-lib.sh",
+    "build:lib:publish": "bun run build:lib && bun publish",
+    "push:pages": "bun run scripts/push-pages.ts",
+    "check": "biome check --write",
+    "dev": "rsbuild dev --open",
+    "format": "biome format --write",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rsbuild/core": "^1.2.4",
+    "@rsbuild/plugin-mdx": "^1.0.2",
+    "@rsbuild/plugin-react": "^1.1.0",
+    "@tailwindcss/postcss": "^4.0.3",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/gh-pages": "^6.1.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.1",
+    "postcss-load-config": "^6.0.1",
+    "postcss-loader": "^8.1.1",
+    "react-inspector": "^6.0.2",
+    "react-syntax-highlighter": "^15.6.1",
+    "react-toastify": "^11.0.3",
+    "tailwindcss": "^4.0.3",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.7.3"
+  }
+}
