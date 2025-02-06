@@ -6,35 +6,17 @@ import { hashTo01Float } from '#utils/hash';
 
 const Rec: FC<{ n: number; seed: number }> = wrap(
   async ({ [$signal]: signal, n, seed }) => {
+    await delayWithSignal(99, signal);
     const baseHue = hashTo01Float(seed) * 360;
     return n <= 0 ? (
       <>
-        <span
-          style={{
-            color: `oklch(0.623 0.214 ${baseHue})`,
-          }}
-        >
-          {n}
-        </span>
+        <span style={{ color: `oklch(0.623 0.214 ${baseHue + 0})` }}>{n}</span>
       </>
     ) : (
       <>
-        {await delayWithSignal(99, signal)}
-        <span
-          style={{
-            color: `oklch(0.623 0.214 ${baseHue + n})`,
-          }}
-        >
-          {n}
-        </span>
+        <span style={{ color: `oklch(0.623 0.214 ${baseHue + n})` }}>{n}</span>
         <Rec n={n - 1} seed={seed} />
-        <span
-          style={{
-            color: `oklch(0.623 0.214 ${baseHue - n})`,
-          }}
-        >
-          {n}
-        </span>
+        <span style={{ color: `oklch(0.623 0.214 ${baseHue - n})` }}>{n}</span>
       </>
     );
   },
@@ -55,13 +37,7 @@ export default function RecursiveAsyncDemo() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-4">
-      <div
-        className="place-items-center grid grid-cols-[repeat(auto-fill,minmax(2em,1fr))] inner-bg-flash [&_*]:rounded-full w-[42em] h-28 font-bold text-xs"
-        style={{ textShadow: 'rgba(0, 0, 0, 0.1) 0px 1px' }}
-      >
-        {hide ? null : <Rec n={52} seed={seed} />}
-      </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 mb-2">
         <button
           type="button"
           className="flex justify-center items-center btn btn-blue"
@@ -96,6 +72,12 @@ export default function RecursiveAsyncDemo() {
             <path d="M16 16h5v5" />
           </svg>
         </button>
+      </div>
+      <div
+        className="place-items-center grid grid-cols-[repeat(auto-fill,minmax(1.75em,1fr))] inner-bg-flash p-3 rounded-md [&_*]:rounded-full w-full h-fit prose-pre"
+        style={{ textShadow: 'rgba(0, 0, 0, 0.1) 0px 1px' }}
+      >
+        {hide ? null : <Rec n={52} seed={seed} />}
       </div>
     </div>
   );

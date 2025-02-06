@@ -51,6 +51,7 @@ code::after {
   background: rgb(40, 44, 52);
   @apply text-sm;
   @apply outline-solid outline-white/20 outline-1;
+  @apply font-mono;
 }
 
 .prose pre code {

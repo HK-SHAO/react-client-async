@@ -10,11 +10,15 @@
   from {
     background-color: oklch(0.809 0.105 251.813);
     color: black;
+    scale: 1.2;
+    font-weight: bold;
   }
 
   to {
     background-color: inherit;
     color: inherit;
+    scale: 1;
+    font-weight: normal;
   }
 }
 
