@@ -76,12 +76,11 @@ Use the `useAsyncMemo` hook to create a memoized async task.
 
 ```tsx
 const {
-  state: { result, pending, error },
-  load, stop
-} = useAsyncMemo(
-  async ({ signal }) =>
-    fetch("/package.json", { signal })
-      .then((res) => res.json()),
+  load, stop,
+  state: { result, pending, error }
+} = useAsyncMemo(({ signal }) =>
+      fetch("/package.json", { signal })
+        .then((res) => res.json()),
   [/* Function Dependencies */],
   { autoLoad: false },
 );

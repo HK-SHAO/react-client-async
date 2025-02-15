@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { propsAreEqual } from '#types/react';
 import type { Awaitable } from '#types/utils';
@@ -131,7 +131,10 @@ function useAsync<Args, Ret>(
   // Create the hook return.
   const hookReturn: UseAsyncReturn<Ret> = {
     // The state of the async function.
-    state: { pending, result, error },
+    state: useMemo(
+      () => ({ pending, result, error }),
+      [pending, result, error],
+    ),
     // The load function to run the async function.
     load: useCallback(() => {
       setRefresh(() => Symbol());
@@ -148,7 +151,7 @@ function useAsync<Args, Ret>(
   const sameFn = fnRef.current === promiseFn;
   const sameArgs = options.sameArgs?.(argsRef.current, args);
   const sameRefresh = refreshRef.current === refresh;
-  const notFirstRun = pending !== undefined || !options.autoLoad;
+  const notFirstRun = pending != null || !options.autoLoad;
   const noChange = sameFn && sameArgs && sameRefresh && notFirstRun;
   const reason = abortCtlRef.current?.signal.reason;
 

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { ObjectInspector } from 'react-inspector';
 import inspectorTheme from '#constants/inspectorTheme';
 import packageJsonUrl from '#constants/packageJsonUrl';
@@ -15,7 +16,7 @@ export default function UseAsyncMemoDemo() {
     load,
     stop,
   } = useAsyncMemo(
-    async ({ signal }) =>
+    ({ signal }) =>
       delayWithSignal(200, signal)
         .then(() => fetch(packageJsonUrl, { signal }))
         .then((res) => res.json() as Promise<PackageJson>),
@@ -25,14 +26,20 @@ export default function UseAsyncMemoDemo() {
     { autoLoad: false },
   );
 
-  const res =
-    result && typeof result === 'object'
-      ? Object.fromEntries(
-          Object.entries(result).filter(([key]) => whiteListSet.has(key)),
-        )
-      : result;
+  const res = useMemo(
+    () =>
+      result && typeof result === 'object'
+        ? Object.fromEntries(
+            Object.entries(result).filter(([key]) => whiteListSet.has(key)),
+          )
+        : result,
+    [result],
+  );
 
-  const data = { result: res, pending, error };
+  const data = useMemo(
+    () => ({ result: res, pending, error }),
+    [res, pending, error],
+  );
 
   return (
     <>
@@ -61,7 +68,7 @@ export default function UseAsyncMemoDemo() {
           <button
             type="button"
             className="flex-1 text-base btn btn-red"
-            onClick={stop}
+            onClick={() => stop(Symbol('Stop'))}
             disabled={!pending}
           >
             Stop

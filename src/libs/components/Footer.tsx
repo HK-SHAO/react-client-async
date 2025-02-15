@@ -10,7 +10,7 @@ export default function Footer() {
         <a href="https://github.com/HK-SHAO" target="_blank" rel="noreferrer">
           @HK-SHAO
         </a>{' '}
-        MIT License
+        with <div className="inline-block doki-doki">❤️</div> and MIT License
       </p>
     </div>
   );

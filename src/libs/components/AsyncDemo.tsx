@@ -9,7 +9,7 @@ const DelayWithError: AsyncFC<{
 }> = memo(async ({ [$signal]: signal, count, addCount }) => {
   await delayWithSignal(1000, signal);
 
-  if (count % 2 !== 0) throw new Error('Error when count is odd');
+  if (count % 2 !== 0) throw new Error('Error when number is odd');
 
   return (
     <button

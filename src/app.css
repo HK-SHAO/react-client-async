@@ -49,3 +49,21 @@
   );
   animation: gradientAnimation 5s linear infinite;
 }
+
+@keyframes doki-doki {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.doki-doki {
+  animation: doki-doki 1s ease infinite;
+}
