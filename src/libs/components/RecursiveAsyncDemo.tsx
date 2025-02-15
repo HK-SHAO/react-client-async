@@ -43,22 +43,7 @@ export default function RecursiveAsyncDemo() {
           className="flex flex-1 justify-center items-center btn btn-blue"
           onClick={reload}
         >
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.15em"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="m-1"
-          >
-            <title>reload</title>
-            <rect width="16" height="6" x="2" y="2" rx="2" />
-            <path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
-            <rect width="4" height="6" x="8" y="16" rx="1" />
-          </svg>
+          Recolor
         </button>
 
         <button
@@ -66,27 +51,11 @@ export default function RecursiveAsyncDemo() {
           className="flex flex-1 justify-center items-center btn btn-red"
           onClick={refresh}
         >
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.15em"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="m-1"
-          >
-            <title>refresh</title>
-            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-            <path d="M3 3v5h5" />
-            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-            <path d="M16 16h5v5" />
-          </svg>
+          Refresh
         </button>
       </div>
       <div
-        className="place-items-center grid grid-cols-[repeat(auto-fill,minmax(1.75em,1fr))] inner-bg-flash p-3 rounded-md [&_*]:rounded-full w-full h-fit prose-pre"
+        className="place-items-center grid grid-cols-[repeat(21,minmax(0,1fr))] inner-bg-flash p-3 rounded-md [&_*]:rounded-full w-full h-fit prose-pre"
         style={{ textShadow: 'rgba(0, 0, 0, 0.1) 0px 1px' }}
       >
         {hide ? null : <Rec n={52} seed={seed} />}
