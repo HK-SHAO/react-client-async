@@ -34,7 +34,6 @@ type UseAsyncObject<P, R> = {
    * Determine the arguments are the same. Default is `sameProps`.
    */
   sameArgs: propsAreEqual<P>;
-
   /**
    * The default result of the async function.
    */
@@ -94,7 +93,11 @@ type UseAsyncReturn<Ret> = {
  * @param promiseFn The async function to run.
  * @param args Arguments for the async function.
  * @param options Options for using the async function.
- * @returns The task state and control.
+ * @returns The task state and controllers.
+ * @todo
+ * - Support hooks in async function components.
+ *   - Approach 1: Move `promiseFn` to before the early return.
+ *   - Approach 2: Create a new function component to support hooks.
  */
 function useAsync<Args, Ret>(
   /**
@@ -136,24 +139,29 @@ function useAsync<Args, Ret>(
   // Abort the async function when unmounted.
   useEffect(() => () => abortCtlRef.current?.abort($abortedByUnmounted), []);
 
+  // The state of the async function.
+  const state = useMemo(
+    () => ({ pending, result, error }),
+    [pending, result, error],
+  );
+
+  // The load function to run the async function.
+  const load = useCallback(() => {
+    setRefresh(() => Symbol());
+    resolversRef.current = Promise.withResolvers();
+    return resolversRef.current.promise;
+  }, []);
+
+  // The stop function to stop the async function.
+  const stop = useCallback((reason: unknown) => {
+    abortCtlRef.current?.abort(reason);
+  }, []);
+
   // Create the hook return.
-  const hookReturn: UseAsyncReturn<Ret> = {
-    // The state of the async function.
-    state: useMemo(
-      () => ({ pending, result, error }),
-      [pending, result, error],
-    ),
-    // The load function to run the async function.
-    load: useCallback(() => {
-      setRefresh(() => Symbol());
-      resolversRef.current = Promise.withResolvers();
-      return resolversRef.current.promise;
-    }, []),
-    // The stop function to stop the async function.
-    stop: useCallback((reason) => {
-      abortCtlRef.current?.abort(reason);
-    }, []),
-  };
+  const hookReturn = useMemo<UseAsyncReturn<Ret>>(
+    () => ({ state, load, stop }),
+    [state, load, stop],
+  );
 
   // Check if no need to rerun the async function.
   const sameFn = fnRef.current === promiseFn;
@@ -184,11 +192,6 @@ function useAsync<Args, Ret>(
 
   // Get the current resolvers.
   const curResolvers = resolversRef.current;
-
-  /**
-   * ToDo: Move `promiseFn` to before the early return
-   * so that the Async component directly supports hooks like `useState`.
-   */
 
   // Run the async function and get the promise.
   Promise.resolve(promiseFn(args, { signal }))
