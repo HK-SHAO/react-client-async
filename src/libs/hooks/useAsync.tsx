@@ -34,11 +34,12 @@ type UseAsyncObject<P, R> = {
    * Determine the arguments are the same. Default is `sameProps`.
    */
   sameArgs: propsAreEqual<P>;
-
   /**
    * The default result of the async function.
    */
   defaultResult: R;
+
+  resultIsNode: boolean;
 };
 
 type UseAsyncOptions<P, R> = Partial<UseAsyncObject<P, R>>;
@@ -136,24 +137,29 @@ function useAsync<Args, Ret>(
   // Abort the async function when unmounted.
   useEffect(() => () => abortCtlRef.current?.abort($abortedByUnmounted), []);
 
+  // The state of the async function.
+  const state = useMemo(
+    () => ({ pending, result, error }),
+    [pending, result, error],
+  );
+
+  // The load function to run the async function.
+  const load = useCallback(() => {
+    setRefresh(() => Symbol());
+    resolversRef.current = Promise.withResolvers();
+    return resolversRef.current.promise;
+  }, []);
+
+  // The stop function to stop the async function.
+  const stop = useCallback((reason: unknown) => {
+    abortCtlRef.current?.abort(reason);
+  }, []);
+
   // Create the hook return.
-  const hookReturn: UseAsyncReturn<Ret> = {
-    // The state of the async function.
-    state: useMemo(
-      () => ({ pending, result, error }),
-      [pending, result, error],
-    ),
-    // The load function to run the async function.
-    load: useCallback(() => {
-      setRefresh(() => Symbol());
-      resolversRef.current = Promise.withResolvers();
-      return resolversRef.current.promise;
-    }, []),
-    // The stop function to stop the async function.
-    stop: useCallback((reason) => {
-      abortCtlRef.current?.abort(reason);
-    }, []),
-  };
+  const hookReturn = useMemo(
+    () => ({ state, load, stop }),
+    [state, load, stop],
+  );
 
   // Check if no need to rerun the async function.
   const sameFn = fnRef.current === promiseFn;
@@ -185,30 +191,42 @@ function useAsync<Args, Ret>(
   // Get the current resolvers.
   const curResolvers = resolversRef.current;
 
-  /**
-   * ToDo: Move `promiseFn` to before the early return
-   * so that the Async component directly supports hooks like `useState`.
-   */
+  // Create the component to resolve the promise.
+  function ResolvePromise(): undefined {
+    // Run the async function and get the promise.
+    Promise.resolve(promiseFn(args, { signal }))
+      // Set the result and clear the error.
+      .then((result) => {
+        setError(undefined);
+        setResult(() => result);
+        curResolvers?.resolve(result);
+      })
+      // Set the error and clear the result.
+      .catch((error) => {
+        setError(() => error);
+        curResolvers?.reject(error);
+      })
+      // Clear the pending state.
+      .finally(() => {
+        const abortSignal = abortCtlRef.current?.signal;
+        if (abortSignal !== signal) return;
+        setPending(false);
+      });
+  }
 
-  // Run the async function and get the promise.
-  Promise.resolve(promiseFn(args, { signal }))
-    // Set the result and clear the error.
-    .then((result) => {
-      setError(undefined);
-      setResult(() => result);
-      curResolvers?.resolve(result);
-    })
-    // Set the error and clear the result.
-    .catch((error) => {
-      setError(() => error);
-      curResolvers?.reject(error);
-    })
-    // Clear the pending state.
-    .finally(() => {
-      const abortSignal = abortCtlRef.current?.signal;
-      if (abortSignal !== signal) return;
-      setPending(false);
-    });
+  if (options.resultIsNode) {
+    // ToDo: fix abort
+    hookReturn.state.result = (
+      <>
+        <ResolvePromise />
+        {hookReturn.state.result}
+      </>
+    ) as Ret;
+    return hookReturn;
+  }
+
+  // Resolve the promise.
+  ResolvePromise();
 
   // Return the hook return.
   return hookReturn;

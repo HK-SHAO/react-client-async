@@ -58,7 +58,7 @@ function Async<P>({
   );
 
   // Execute the async function and get the state.
-  const { state } = useAsync(fn, args, { sameArgs });
+  const { state } = useAsync(fn, args, { sameArgs, resultIsNode: true });
   const { pending, result, error } = state;
 
   // Render pending state.
