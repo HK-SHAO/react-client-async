@@ -9,7 +9,7 @@ import useAsync, {
 export default function useAsyncMemo<T>(
   promiseFn: (extras: UseAsyncFnExtras) => Promise<T>,
   deps: DependencyList,
-  options: UseAsyncOptions<null> = {},
+  options: UseAsyncOptions<null, T> = {},
 ) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: only deps are needed
   const fn = useMemo<UseAsyncFn<null, T>>(

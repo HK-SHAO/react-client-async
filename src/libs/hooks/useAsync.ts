@@ -25,7 +25,7 @@ type UseAsyncFn<Args = unknown, Ret = unknown> = (
   extras: UseAsyncFnExtras,
 ) => Awaitable<Ret>;
 
-type UseAsyncObject<P> = {
+type UseAsyncObject<P, R> = {
   /**
    * If `true`, the async function will run automatically after the first render. Default is `true`.
    */
@@ -34,9 +34,14 @@ type UseAsyncObject<P> = {
    * Determine the arguments are the same. Default is `sameProps`.
    */
   sameArgs: propsAreEqual<P>;
+
+  /**
+   * The default result of the async function.
+   */
+  defaultResult: R;
 };
 
-type UseAsyncOptions<P> = Partial<UseAsyncObject<P>>;
+type UseAsyncOptions<P, R> = Partial<UseAsyncObject<P, R>>;
 
 /**
  * The symbol for aborted by rerender.
@@ -103,14 +108,17 @@ function useAsync<Args, Ret>(
   /**
    * Options for using the async function.
    */
-  options: UseAsyncOptions<Args> = {},
+  options: UseAsyncOptions<Args, Ret> = {},
 ): UseAsyncReturn<Ret> {
-  // Set default options
+  // Set default options.
   options.autoLoad ??= true;
   options.sameArgs ??= sameProps;
 
+  // Get the default result.
+  const defaultResult = options.defaultResult;
+
   const [pending, setPending] = useState<boolean>();
-  const [result, setResult] = useState<Ret>();
+  const [result, setResult] = useState(defaultResult);
   const [error, setError] = useState<unknown>();
 
   const abortCtlRef = useRef<AbortController>(null);

@@ -7,7 +7,7 @@ import delayWithSignal from '../utils/delayWithSignal';
 
 type PackageJson = typeof import('#src/../package.json');
 
-const whiteList = ['name', 'version', 'author', 'license', 'homepage'];
+const whiteList = ['name', 'version', 'author', 'license'];
 const whiteListSet = new Set(whiteList);
 
 export default function UseAsyncMemoDemo() {
@@ -23,7 +23,7 @@ export default function UseAsyncMemoDemo() {
     [
       /* No dependencies */
     ],
-    { autoLoad: false },
+    { autoLoad: false, defaultResult: null },
   );
 
   const res = useMemo(
@@ -44,16 +44,14 @@ export default function UseAsyncMemoDemo() {
   return (
     <>
       <div
-        className="flex flex-col justify-center items-center gap-2 py-4 p-2 rounded-md prose-pre"
+        className="flex flex-col justify-center items-center gap-2 p-2 py-4 rounded-md prose-pre"
         style={{ textShadow: 'rgba(0, 0, 0, 0.3) 0px 1px' }}
       >
-        <div className="w-full">
-          <ObjectInspector
-            data={data}
-            expandLevel={res ? 3 : 0}
-            theme={inspectorTheme}
-          />
-        </div>
+        <ObjectInspector
+          data={data}
+          expandLevel={res ? 3 : 0}
+          theme={inspectorTheme}
+        />
 
         <div className="bg-gray-500/10 m-2 py-[0.5px] w-full" />
         <div className="flex gap-4 w-[24em]">

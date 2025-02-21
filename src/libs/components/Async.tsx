@@ -93,8 +93,21 @@ function Async<P>({
  * @param fc The async function component.
  * @returns The normal function component.
  */
-function wrap<P>(fc: AsyncFC<P>): FC<P> {
-  return (props: P) => <Async $fc={fc} {...props} />;
+function wrap<P>(
+  fc: AsyncFC<P>,
+  {
+    waiting,
+    fallback,
+  }: {
+    waiting?: ReactNode | StateFC;
+    fallback?: ReactNode | StateFC;
+  } = {},
+): FC<P> {
+  return function AsyncWrapper(props: P) {
+    return (
+      <Async $fc={fc} $waiting={waiting} $fallback={fallback} {...props} />
+    );
+  };
 }
 
 export {

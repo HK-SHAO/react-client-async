@@ -48,8 +48,8 @@ const {
 } = useAsyncMemo(({ signal }) =>
       fetch("/package.json", { signal })
         .then((res) => res.json()),
-  [/* Function Dependencies */],
-  { autoLoad: false },
+  [ /* Function Dependencies */ ],
+  { autoLoad: false, defaultResult: null },
 );
 ```
 

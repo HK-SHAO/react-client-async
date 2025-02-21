@@ -1,6 +1,11 @@
 import { memo, useCallback, useMemo, useState } from 'react';
 
-import { $signal, Async, type AsyncFC, type StateFC } from 'react-client-async';
+import {
+  $signal,
+  Async,
+  type AsyncFC,
+  type StateFC,
+} from 'react-client-async';
 import delayWithSignal from '#utils/delayWithSignal';
 
 const DelayWithError: AsyncFC<{

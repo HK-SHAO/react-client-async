@@ -55,7 +55,7 @@ export default function RecursiveAsyncDemo() {
         </button>
       </div>
       <div
-        className="place-items-center grid grid-cols-[repeat(21,minmax(0,1fr))] inner-bg-flash p-3 rounded-md [&_*]:rounded-full w-full h-fit prose-pre"
+        className="place-items-center grid grid-cols-[repeat(21,minmax(0,1fr))] inner-bg-flash p-3 rounded-md [&_*]:rounded-full w-full min-h-32 prose-pre"
         style={{ textShadow: 'rgba(0, 0, 0, 0.1) 0px 1px' }}
       >
         {hide ? null : <Rec n={52} seed={seed} />}
