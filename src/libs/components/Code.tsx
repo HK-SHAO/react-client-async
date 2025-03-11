@@ -5,12 +5,17 @@ import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import monoFontFamily from '../constants/monoFontFamily';
+
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('bash', bash);
 
 const regExpLanguage = /language-(\w+)/;
 
-const customStyle: CSSProperties = { display: 'contents' };
+const customStyle = {
+  display: 'contents',
+  fontFamily: monoFontFamily,
+} satisfies CSSProperties;
 
 export default function Code({
   className,
