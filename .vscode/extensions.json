@@ -2,6 +2,7 @@
   "recommendations": [
     "biomejs.biome",
     "foxundermoon.shell-format",
-    "mishalestev.tailwind-css-language-mode-formatter"
+    "mishalestev.tailwind-css-language-mode-formatter",
+    "bradlc.vscode-tailwindcss"
   ]
 }
