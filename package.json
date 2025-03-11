@@ -32,7 +32,7 @@
   "scripts": {
     "build:app": "rsbuild build",
     "build:app:deploy": "bun run build:app && bun run push:pages",
-    "build:lib": "bun run scripts/build-lib.sh",
+    "build:lib": "rm -rf dist && CFG=tsconfig.lib.json && tsc -p $CFG && tsc-alias -p $CFG",
     "build:lib:publish": "bun run build:lib && bun publish",
     "push:pages": "bun run scripts/push-pages.ts",
     "check": "biome check --write",
